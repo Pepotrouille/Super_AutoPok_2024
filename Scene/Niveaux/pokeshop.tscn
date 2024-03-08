@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg01n774834xx"]
+
+[ext_resource type="PackedScene" uid="uid://emsawk61edsn" path="res://Scene/pokemon.tscn" id="1_edo6b"]
+[ext_resource type="Script" path="res://Script/pokeshop.gd" id="1_gnwpx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nogfs"]
+size = Vector2(82, 72)
+
+[node name="Pokeshop" type="Node2D"]
+script = ExtResource("1_gnwpx")
+
+[node name="Pokemon" parent="." instance=ExtResource("1_edo6b")]
+position = Vector2(650, 495)
+
+[node name="Pokemon2" parent="." instance=ExtResource("1_edo6b")]
+position = Vector2(814, 495)
+
+[node name="Pokemon3" parent="." instance=ExtResource("1_edo6b")]
+position = Vector2(969, 496)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(728, 126)
+shape = SubResource("RectangleShape2D_nogfs")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(869, 126)
+shape = SubResource("RectangleShape2D_nogfs")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(728, 227)
+shape = SubResource("RectangleShape2D_nogfs")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(869, 227)
+shape = SubResource("RectangleShape2D_nogfs")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
+position = Vector2(728, 328)
+shape = SubResource("RectangleShape2D_nogfs")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="."]
+position = Vector2(869, 328)
+shape = SubResource("RectangleShape2D_nogfs")
+
+[node name="EquipePlace1" type="CollisionShape2D" parent="."]
+position = Vector2(196, 160)
+shape = SubResource("RectangleShape2D_nogfs")
+
+[node name="EquipePlace2" type="CollisionShape2D" parent="."]
+position = Vector2(379, 160)
+shape = SubResource("RectangleShape2D_nogfs")
+
+[node name="EquipePlace3" type="CollisionShape2D" parent="."]
+position = Vector2(195, 308)
+shape = SubResource("RectangleShape2D_nogfs")
+
+[node name="EquipePlace4" type="CollisionShape2D" parent="."]
+position = Vector2(378, 308)
+shape = SubResource("RectangleShape2D_nogfs")
+
+[node name="EquipePlace5" type="CollisionShape2D" parent="."]
+position = Vector2(195, 471)
+shape = SubResource("RectangleShape2D_nogfs")
+
+[node name="EquipePlace6" type="CollisionShape2D" parent="."]
+position = Vector2(378, 471)
+shape = SubResource("RectangleShape2D_nogfs")

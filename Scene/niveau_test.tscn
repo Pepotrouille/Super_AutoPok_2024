@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://coreu7m4pe3fw"]
+[gd_scene load_steps=2 format=3 uid="uid://coreu7m4pe3fw"]
+
+[ext_resource type="PackedScene" uid="uid://emsawk61edsn" path="res://Scene/pokemon.tscn" id="1_7x5ac"]
 
 [node name="NiveauTest" type="Node2D"]
+
+[node name="Pokemon" parent="." instance=ExtResource("1_7x5ac")]
