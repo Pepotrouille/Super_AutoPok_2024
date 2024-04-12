@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://mtvdbr45jejx"]
+
+[ext_resource type="Texture2D" uid="uid://wbctovfel6w2" path="res://Assets/Images/Placeholder/images.png" id="1_vcauf"]
+[ext_resource type="Script" path="res://Script/sell_place.gd" id="1_y8pn6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qrte"]
+size = Vector2(224, 225)
+
+[node name="SellPlace" type="Area2D"]
+script = ExtResource("1_y8pn6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vcauf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_6qrte")

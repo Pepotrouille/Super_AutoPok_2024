@@ -1,7 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://coreu7m4pe3fw"]
+[gd_scene load_steps=5 format=3 uid="uid://coreu7m4pe3fw"]
 
 [ext_resource type="PackedScene" uid="uid://emsawk61edsn" path="res://Scene/pokemon.tscn" id="1_7x5ac"]
+[ext_resource type="Texture2D" uid="uid://cv1n4epb1ttki" path="res://Assets/Images/Placeholder/Background1.png" id="2_vcq67"]
+[ext_resource type="Texture2D" uid="uid://ca4qi2r8hwy2m" path="res://Assets/Images/Placeholder/BackgroundIndic.png" id="3_i6uo8"]
+[ext_resource type="Texture2D" uid="uid://dub0t5s857dx0" path="res://Assets/Images/Placeholder/Background2.png" id="4_fcwyw"]
 
 [node name="NiveauTest" type="Node2D"]
 
 [node name="Pokemon" parent="." instance=ExtResource("1_7x5ac")]
+position = Vector2(691, 330)
+scale = Vector2(2, 2)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(6, 6)
+texture = ExtResource("2_vcq67")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+z_index = -1
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(6, 6)
+texture = ExtResource("3_i6uo8")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+z_index = 1
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(6, 6)
+texture = ExtResource("4_fcwyw")
