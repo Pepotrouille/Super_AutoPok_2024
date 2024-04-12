@@ -16,10 +16,10 @@ func set_pokemon_to_buy(pokemon_kind : Pokemon.PokemonKind):
 func _dropped_on_areas():
 	for area in local_pokemon.get_overlapping_areas():
 		if area is TeamEmptyPlace:
-			buy_pokemon_from_empty_place(area)
+			buy_pokemon_in_empty_place(area)
 			
 
-func buy_pokemon_from_empty_place(team_empty_place : TeamEmptyPlace):
+func buy_pokemon_in_empty_place(team_empty_place : TeamEmptyPlace):
 	if current_selected != null: #Avoid using two places with one pokemon
 		if game_stats.money - local_pokemon.price < 0:
 			print('Achat impossible. ', local_pokemon.price - game_stats.money, " crédits manquants.")

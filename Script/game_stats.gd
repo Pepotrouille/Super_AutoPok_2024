@@ -34,7 +34,7 @@ func set_pokemon(index : int, pokemon : Pokemon):
 func get_pokemon(index : int):
 	return pokemon_team[index-1];
 	
-func get_team(pokemon_team):
+func get_team():
 	return pokemon_team;
 
 func change_position_in_team(index1 : int, index2 : int):

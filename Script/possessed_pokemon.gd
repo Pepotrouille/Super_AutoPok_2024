@@ -41,21 +41,20 @@ func change_position_in_team_with_empty(empty_place: TeamEmptyPlace ):
 	is_dropped = true
 
 func _dropped_on_areas():
-	for body in local_pokemon.get_overlapping_bodies():
-		print("body : ",body.name)
+	#for body in local_pokemon.get_overlapping_bodies():
+		#print("body : ",body.name)
 	for area in local_pokemon.get_overlapping_areas():
-		print("area : ",area.name)
+		#print("area : ",area.name)
 		if area is Pokemon:
 			if area.get_parent() is PossessedPokemon:
 				area.get_parent().change_position_in_team_with(self)
 		if area is TeamEmptyPlace:
 			change_position_in_team_with_empty(area)
 		if area is SellPlace:
-			print("kfjdksjlfjds")
+			game_stats.change_money(ceil(local_pokemon.price * area.sell_coef))
 			back_to_empty_place()
 
 func back_to_empty_place():
-	print("Sell")
 	var empty_place = load("res://Scene/team_empty_place.tscn").instantiate();
 	empty_place.index = index
 	game_stats.set_pokemon(index, null)

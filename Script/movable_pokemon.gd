@@ -25,10 +25,13 @@ func _ready():
 		for node in get_tree().root.get_child(0).get_children():
 			if node is GameStats:
 				game_stats = node;
+	for empty_place in TeamEmptyPlace.empty_places_in_scene:
+		if empty_place != null:
+			empty_place.new_movable_in_scene(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Input.is_mouse_button_pressed( 1 ): # Click Gauche
+func _process(_delta):
+	if Input.is_mouse_button_pressed( MOUSE_BUTTON_LEFT ): # Click Gauche
 		if is_moving: #Déplacemenyt avec la souris si sélectionné
 			position = get_global_mouse_position()
 		elif is_hovered and current_selected == null: #Sélectionne pokémon si aucun sélectionné
@@ -60,5 +63,6 @@ func _on_pokemon_mouse_entered():
 func _on_pokemon_mouse_exited():
 	is_hovered = false
 
+#Virtual : permet aux classes héritante de redéfinir la fonction appelée au lâché
 func _dropped_on_areas():
 	pass

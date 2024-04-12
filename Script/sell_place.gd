@@ -2,11 +2,8 @@ extends Area2D
 
 class_name SellPlace
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+#Quand placé, permet de revendre un Pokémon de l'équipe au prix * coef. 
+#Idéalement coef entre 0 et 1
+@export var sell_coef : float = 0.8
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

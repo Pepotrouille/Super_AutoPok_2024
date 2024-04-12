@@ -11,8 +11,11 @@ signal _new_movable(new_movable : MovablePokemon);
 
 @export var index : int = 1;
 
+static var empty_places_in_scene : Array;
+
 func _ready():
 	modulate.a = 0
+	empty_places_in_scene.append(self)
 	for node in get_tree().root.get_child(0).get_children():
 		if node is MovablePokemon:
 			node._pokemon_is_moving.connect(pokemon_selected)
@@ -21,10 +24,9 @@ func _ready():
 			game_stats = node
 		if node is TeamEmptyPlace:
 			node._new_movable.connect(new_movable_in_scene)
-			
 
 
-func _process(delta):
+func _process(_delta):
 	if is_highlighted:
 		if light_is_decreasing:
 			if modulate.a > 0.3:
@@ -59,4 +61,5 @@ func fill_place(pokemon : Pokemon):
 	filled_place.position=position
 	get_tree().root.get_child(0).add_child(filled_place)
 	_new_movable.emit(filled_place)
+	empty_places_in_scene.remove_at(empty_places_in_scene.find(self))
 	queue_free();
