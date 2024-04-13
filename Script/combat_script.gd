@@ -21,9 +21,9 @@ class_name CombatScript
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	set_places()
 	set_player_pokemon_test()
 	set_adv_pokemon_test()
-	set_places()
 
 var max_time_turn : float = 1.5
 

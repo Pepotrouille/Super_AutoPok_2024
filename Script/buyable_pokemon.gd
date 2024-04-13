@@ -12,6 +12,7 @@ func set_pokemon_to_buy(pokemon_kind : Pokemon.PokemonKind):
 	local_pokemon.scale *= 1.5
 	add_child(local_pokemon)
 	print("À vendre : ",local_pokemon.name)
+	local_pokemon.show_info(false)
 
 func _dropped_on_areas():
 	for area in local_pokemon.get_overlapping_areas():

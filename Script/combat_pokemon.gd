@@ -37,6 +37,9 @@ func set_combat_pokemon(pokemon : Pokemon):
 	local_pokemon.position=Vector2.ZERO
 	local_pokemon.scale = Vector2.ONE * 1.5
 	local_pokemon.position.y -= 50
+	local_pokemon.show_life(true)
+	print(is_from_player)
+	local_pokemon.face_right(is_from_player)
 
 
 func make_action():
