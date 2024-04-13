@@ -1,15 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://coreu7m4pe3fw"]
+[gd_scene load_steps=8 format=3 uid="uid://coreu7m4pe3fw"]
 
 [ext_resource type="PackedScene" uid="uid://emsawk61edsn" path="res://Scene/pokemon.tscn" id="1_7x5ac"]
 [ext_resource type="Texture2D" uid="uid://cv1n4epb1ttki" path="res://Assets/Images/Placeholder/Background1.png" id="2_vcq67"]
 [ext_resource type="Texture2D" uid="uid://ca4qi2r8hwy2m" path="res://Assets/Images/Placeholder/BackgroundIndic.png" id="3_i6uo8"]
 [ext_resource type="Texture2D" uid="uid://dub0t5s857dx0" path="res://Assets/Images/Placeholder/Background2.png" id="4_fcwyw"]
+[ext_resource type="PackedScene" uid="uid://c27v8g18sh6sg" path="res://Scene/combat_script.tscn" id="5_vmwhc"]
+[ext_resource type="PackedScene" uid="uid://cdotueqim30v7" path="res://Scene/combat_pokemon.tscn" id="6_bqec6"]
+[ext_resource type="PackedScene" uid="uid://dqkevsq4wplr4" path="res://Scene/game_stats.tscn" id="6_urjcr"]
 
 [node name="NiveauTest" type="Node2D"]
-
-[node name="Pokemon" parent="." instance=ExtResource("1_7x5ac")]
-position = Vector2(691, 330)
-scale = Vector2(2, 2)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1
@@ -34,3 +33,73 @@ offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(6, 6)
 texture = ExtResource("4_fcwyw")
+
+[node name="Pokemon" parent="." instance=ExtResource("1_7x5ac")]
+position = Vector2(255, 291)
+scale = Vector2(2, 2)
+
+[node name="GameStats" parent="." instance=ExtResource("6_urjcr")]
+
+[node name="player_pokemon_1" parent="." instance=ExtResource("6_bqec6")]
+position = Vector2(441, 456)
+scale = Vector2(2, 2)
+index_in_team = 1
+
+[node name="player_pokemon_2" parent="." instance=ExtResource("6_bqec6")]
+position = Vector2(297, 530)
+index_in_team = 2
+
+[node name="player_pokemon_3" parent="." instance=ExtResource("6_bqec6")]
+position = Vector2(236, 573)
+index_in_team = 3
+
+[node name="player_pokemon_4" parent="." instance=ExtResource("6_bqec6")]
+position = Vector2(179, 530)
+index_in_team = 4
+
+[node name="player_pokemon_5" parent="." instance=ExtResource("6_bqec6")]
+position = Vector2(118, 573)
+index_in_team = 5
+
+[node name="player_pokemon_6" parent="." instance=ExtResource("6_bqec6")]
+position = Vector2(66, 530)
+index_in_team = 6
+
+[node name="CombatScript" parent="." node_paths=PackedStringArray("player_pokemon_1", "player_pokemon_2", "player_pokemon_3", "player_pokemon_4", "player_pokemon_5", "player_pokemon_6", "adv_pokemon_1", "adv_pokemon_2", "adv_pokemon_3", "adv_pokemon_4", "adv_pokemon_5", "adv_pokemon_6") instance=ExtResource("5_vmwhc")]
+player_pokemon_1 = NodePath("../player_pokemon_1")
+player_pokemon_2 = NodePath("../player_pokemon_2")
+player_pokemon_3 = NodePath("../player_pokemon_3")
+player_pokemon_4 = NodePath("../player_pokemon_4")
+player_pokemon_5 = NodePath("../player_pokemon_5")
+player_pokemon_6 = NodePath("../player_pokemon_6")
+adv_pokemon_1 = NodePath("../adv_pokemon_1")
+adv_pokemon_2 = NodePath("../adv_pokemon_2")
+adv_pokemon_3 = NodePath("../adv_pokemon_3")
+adv_pokemon_4 = NodePath("../adv_pokemon_4")
+adv_pokemon_5 = NodePath("../adv_pokemon_5")
+adv_pokemon_6 = NodePath("../adv_pokemon_6")
+
+[node name="adv_pokemon_1" parent="." instance=ExtResource("6_bqec6")]
+position = Vector2(690, 366)
+scale = Vector2(2, 2)
+index_in_team = 1
+
+[node name="adv_pokemon_2" parent="." instance=ExtResource("6_bqec6")]
+position = Vector2(829, 374)
+index_in_team = 2
+
+[node name="adv_pokemon_3" parent="." instance=ExtResource("6_bqec6")]
+position = Vector2(882, 330)
+index_in_team = 3
+
+[node name="adv_pokemon_4" parent="." instance=ExtResource("6_bqec6")]
+position = Vector2(957, 374)
+index_in_team = 4
+
+[node name="adv_pokemon_5" parent="." instance=ExtResource("6_bqec6")]
+position = Vector2(1010, 330)
+index_in_team = 5
+
+[node name="adv_pokemon_6" parent="." instance=ExtResource("6_bqec6")]
+position = Vector2(1070, 374)
+index_in_team = 6

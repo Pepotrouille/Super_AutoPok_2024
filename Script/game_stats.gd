@@ -30,7 +30,6 @@ func set_pokemon(index : int, pokemon : Pokemon):
 		pokemon_team[index-1] = pokemon;
 		print("Ajout de ", pokemon.name, " à l'équipe, en position " , index)
 
-	
 func get_pokemon(index : int):
 	return pokemon_team[index-1];
 	
