@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://fbk3sjtu8j83"]
+
+[ext_resource type="Script" path="res://Script/UI/main_menu.gd" id="1_62am0"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_62am0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Start" type="Button" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 102.0
+offset_top = 109.0
+offset_right = -756.0
+offset_bottom = -402.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Commencer"
+
+[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]

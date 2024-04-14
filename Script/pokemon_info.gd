@@ -1,13 +1,15 @@
 extends Node2D
 
-func show_life(is_visible:bool):
-	show_info(false)
-	$LifeBar.visible = is_visible
+class_name PokemonInfo
 
-func show_info(is_visible:bool):
-	$LifeBar.visible = is_visible
-	$AttackDisplayValue.visible = is_visible
-	$AttackIcon.visible = is_visible
+func show_life(is_now_visible:bool):
+	show_info(false)
+	$LifeBar.visible = is_now_visible
+
+func show_info(is_now_visible:bool):
+	$LifeBar.visible = is_now_visible
+	$AttackDisplayValue.visible = is_now_visible
+	$AttackIcon.visible = is_now_visible
 
 func set_max_life(max_life:int):
 	$LifeBar.max_value = max_life

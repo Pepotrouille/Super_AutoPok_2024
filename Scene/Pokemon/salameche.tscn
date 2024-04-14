@@ -10,7 +10,7 @@ size = Vector2(50, 45)
 position = Vector2(0, -58)
 script = ExtResource("1_oiffp")
 max_life = 8
-attack = 18
+attack = 5
 price = 22
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

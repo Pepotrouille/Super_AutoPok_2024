@@ -10,7 +10,7 @@ size = Vector2(47, 42)
 position = Vector2(0, -58)
 script = ExtResource("1_7x282")
 max_life = 10
-attack = 15
+attack = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 36)

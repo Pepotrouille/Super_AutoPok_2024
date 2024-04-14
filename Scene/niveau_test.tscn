@@ -98,3 +98,5 @@ index_in_team = 5
 [node name="adv_pokemon_6" parent="." instance=ExtResource("6_bqec6")]
 position = Vector2(1070, 374)
 index_in_team = 6
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

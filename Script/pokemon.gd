@@ -19,7 +19,7 @@ var life : int;
 @export var attack : int = 20;
 @export var price : int = 20;
 var alive : bool = true;
-
+var pokemon_info : PokemonInfo
 
 
 # Called when the node enters the scene tree for the first time.
@@ -31,8 +31,9 @@ func _ready():
 	$PokemonInfo.set_attack(attack)
 
 func set_current_life(current_life:int):
+	life = current_life
 	create_pokemon_info_if_none()
-	$PokemonInfo.set_current_life(current_life)
+	pokemon_info.set_current_life(current_life)
 
 func show_life(is_visible:bool):
 	create_pokemon_info_if_none()
@@ -40,15 +41,16 @@ func show_life(is_visible:bool):
 
 func show_info(is_visible:bool):
 	create_pokemon_info_if_none()
-	$PokemonInfo.show_info(is_visible)
+	pokemon_info.show_info(is_visible)
 
 func change_current_life(delta_life:int):
+	life += delta_life
 	create_pokemon_info_if_none()
-	$PokemonInfo.change_current_life(delta_life)
+	pokemon_info.change_current_life(delta_life)
 
 func create_pokemon_info_if_none():
-	if $PokemonInfo == null:
-		var pokemon_info =load("res://Scene/pokemon_info.tscn").instantiate()
+	if pokemon_info == null:
+		pokemon_info =load("res://Scene/pokemon_info.tscn").instantiate()
 		print(pokemon_info.name)
 		add_child(pokemon_info)
 		pokemon_info.position = Vector2.ZERO

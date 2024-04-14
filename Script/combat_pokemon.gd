@@ -14,6 +14,8 @@ var next_place : CombatPokemon = null;
 
 var is_from_player : bool;
 
+signal has_died;
+
 func _ready():
 	if game_stats == null:
 		for node in get_tree().root.get_child(0).get_children():
@@ -38,7 +40,6 @@ func set_combat_pokemon(pokemon : Pokemon):
 	local_pokemon.scale = Vector2.ONE * 1.5
 	local_pokemon.position.y -= 50
 	local_pokemon.show_life(true)
-	print(is_from_player)
 	local_pokemon.face_right(is_from_player)
 
 
@@ -47,10 +48,10 @@ func make_action():
 		if index_in_team == 1:
 			if is_from_player: 
 				if combat_script.adv_pokemon_1.local_pokemon != null:
-					print(local_pokemon.name, " attack ", combat_script.adv_pokemon_1.local_pokemon.name)
+					combat_script.adv_pokemon_1.is_attacked(local_pokemon.attack)
 			else:
 				if combat_script.player_pokemon_1.local_pokemon != null:
-					print(local_pokemon.name, " attack ", combat_script.player_pokemon_1.local_pokemon.name)
+					combat_script.player_pokemon_1.is_attacked(local_pokemon.attack)
 
 func move(): 
 	if local_pokemon != null:
@@ -59,3 +60,23 @@ func move():
 				next_place.set_combat_pokemon(local_pokemon)
 				local_pokemon = null
 
+func is_attacked(lost_pv:int):
+	local_pokemon.change_current_life(-lost_pv)
+	
+
+func check_dying():
+	if local_pokemon != null:
+		if local_pokemon.life <= 0:
+			dies()
+
+func dies():
+	print(name," dying")
+	local_pokemon.queue_free()
+	local_pokemon = null
+	has_died.emit()
+
+func set_is_from_player(new_is_from_player : bool):
+	is_from_player = new_is_from_player
+
+func set_next_place(new_next_place : CombatPokemon):
+	next_place = new_next_place
