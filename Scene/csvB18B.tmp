@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqhn8moi4ik78"]
+
+[ext_resource type="Script" path="res://Script/csv_pokemon_reader.gd" id="1_vayvj"]
+
+[node name="CsvPokemonDatabase" type="Node"]
+script = ExtResource("1_vayvj")

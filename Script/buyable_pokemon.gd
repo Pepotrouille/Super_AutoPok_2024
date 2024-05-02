@@ -5,13 +5,13 @@ class_name BuyablePokemon
 
 
 
-func set_pokemon_to_buy(pokemon_kind : Pokemon.PokemonKind):
-	local_pokemon = Pokemon.create_pokemon(pokemon_kind)
+func set_pokemon_to_buy(pokemon : Pokemon):
+	local_pokemon = pokemon
 	local_pokemon.mouse_entered.connect(_on_pokemon_mouse_entered)
 	local_pokemon.mouse_exited.connect(_on_pokemon_mouse_exited)
 	local_pokemon.scale *= 1.5
 	add_child(local_pokemon)
-	print("À vendre : ",local_pokemon.name)
+	#print("À vendre : ",local_pokemon.name)
 	local_pokemon.show_info(false)
 
 func _dropped_on_areas():

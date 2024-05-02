@@ -20,9 +20,10 @@ signal _pokemon_is_moving();
 signal _pokemon_is_not_moving();
 
 func _ready():
+	print("NOUVEAU")
 	base_position = position
 	if game_stats == null:
-		for node in get_tree().root.get_child(0).get_children():
+		for node in get_tree().root.get_children():
 			if node is GameStats:
 				game_stats = node;
 	for empty_place in TeamEmptyPlace.empty_places_in_scene:
@@ -35,11 +36,14 @@ func _process(_delta):
 		if is_moving: #Déplacemenyt avec la souris si sélectionné
 			position = get_global_mouse_position()
 		elif is_hovered and current_selected == null: #Sélectionne pokémon si aucun sélectionné
-			_pokemon_is_moving.emit()
-			current_selected = local_pokemon;
-			current_selected.z_index=5;
-			is_moving = true;
-			is_dropped = false;
+			if local_pokemon != null:
+				_pokemon_is_moving.emit()
+				current_selected = local_pokemon;
+				current_selected.z_index=5;
+				is_moving = true;
+				is_dropped = false;
+			else:
+				queue_free()
 	elif is_moving: #Click souris laché, mais pas immobile (position initiale non-atteinte)
 		if position.distance_squared_to(base_position)<50:
 			_pokemon_is_not_moving.emit()
@@ -67,4 +71,8 @@ func _on_pokemon_mouse_exited():
 
 #Virtual : permet aux classes héritante de redéfinir la fonction appelée au lâché
 func _dropped_on_areas():
+	pass
+
+#Virtual : permet aux classes héritante de redéfinir la fonction appelée au lâché
+func _delete_place():
 	pass

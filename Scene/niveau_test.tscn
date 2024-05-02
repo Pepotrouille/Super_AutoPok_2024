@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://coreu7m4pe3fw"]
+[gd_scene load_steps=6 format=3 uid="uid://coreu7m4pe3fw"]
 
 [ext_resource type="Texture2D" uid="uid://cv1n4epb1ttki" path="res://Assets/Images/Placeholder/Background1.png" id="2_vcq67"]
 [ext_resource type="Texture2D" uid="uid://ca4qi2r8hwy2m" path="res://Assets/Images/Placeholder/BackgroundIndic.png" id="3_i6uo8"]
 [ext_resource type="Texture2D" uid="uid://dub0t5s857dx0" path="res://Assets/Images/Placeholder/Background2.png" id="4_fcwyw"]
 [ext_resource type="PackedScene" uid="uid://c27v8g18sh6sg" path="res://Scene/combat_script.tscn" id="5_vmwhc"]
 [ext_resource type="PackedScene" uid="uid://cdotueqim30v7" path="res://Scene/combat_pokemon.tscn" id="6_bqec6"]
-[ext_resource type="PackedScene" uid="uid://dqkevsq4wplr4" path="res://Scene/game_stats.tscn" id="6_urjcr"]
 
 [node name="NiveauTest" type="Node2D"]
 
@@ -32,8 +31,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(6, 6)
 texture = ExtResource("4_fcwyw")
-
-[node name="GameStats" parent="." instance=ExtResource("6_urjcr")]
 
 [node name="player_pokemon_1" parent="." instance=ExtResource("6_bqec6")]
 position = Vector2(441, 456)

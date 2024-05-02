@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqkevsq4wplr4"]
+[gd_scene load_steps=3 format=3 uid="uid://dqkevsq4wplr4"]
 
 [ext_resource type="Script" path="res://Script/game_stats.gd" id="1_kkup3"]
+[ext_resource type="PackedScene" uid="uid://dqhn8moi4ik78" path="res://Scene/csv_pokemon_database.tscn" id="2_0wjru"]
 
-[node name="GameStats" type="Node"]
+[node name="GameStats" type="Node" node_paths=PackedStringArray("csv_pokemon_database")]
 script = ExtResource("1_kkup3")
+csv_pokemon_database = NodePath("CsvPokemonDatabase")
+
+[node name="CsvPokemonDatabase" parent="." instance=ExtResource("2_0wjru")]

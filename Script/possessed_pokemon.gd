@@ -4,23 +4,21 @@ class_name PossessedPokemon
 
 @export var index: int = 1;
 
-#Pour initialiser un PossessedPokemon avec un type de Pokemon
-func set_possessed_pokemon_kind(pokemon_kind : Pokemon.PokemonKind):
-	set_possessed_pokemon(Pokemon.create_pokemon(pokemon_kind))
-
 #Pour initialiser un PossessedPokemon avec un Pokemon existant
 func set_possessed_pokemon(pokemon : Pokemon):
-	local_pokemon = pokemon
-	if(local_pokemon.get_parent() != null):
-		local_pokemon.reparent(self)
-	else:
-		add_child(local_pokemon)
-	position=Vector2.ZERO
-	local_pokemon.position=Vector2.ZERO
-	local_pokemon.position.y -= 50
-	local_pokemon.mouse_entered.connect(_on_pokemon_mouse_entered)
-	local_pokemon.mouse_exited.connect(_on_pokemon_mouse_exited)
-	local_pokemon.show_info(false)
+	if pokemon != null:
+		local_pokemon = pokemon
+		if(local_pokemon.get_parent() != null):
+			local_pokemon.reparent(self)
+		else:
+			add_child(local_pokemon)
+		position=Vector2.ZERO
+		local_pokemon.position=Vector2.ZERO
+		local_pokemon.position.y = position.y+15
+		local_pokemon.set_size(2.5)
+		local_pokemon.mouse_entered.connect(_on_pokemon_mouse_entered)
+		local_pokemon.mouse_exited.connect(_on_pokemon_mouse_exited)
+		local_pokemon.show_info(false)
 
 #Permet de changer de place au sein de la team avec un autre pokemon. Met à jour les deux
 func change_position_in_team_with(other_possessed_pokemon: PossessedPokemon):
@@ -30,7 +28,7 @@ func change_position_in_team_with(other_possessed_pokemon: PossessedPokemon):
 	game_stats.change_position_in_team(index, other_possessed_pokemon.index)
 	is_moving = true
 	is_dropped = true
-	print(other_possessed_pokemon.local_pokemon.name)
+	#print("Change pos with: ",other_possessed_pokemon.local_pokemon.name)
 
 #Permet de changer de place au sein de la team avec une place vide. Met à jour les deux
 func change_position_in_team_with_empty(empty_place: TeamEmptyPlace ):
@@ -42,18 +40,30 @@ func change_position_in_team_with_empty(empty_place: TeamEmptyPlace ):
 	is_dropped = true
 
 func _dropped_on_areas():
-	#for body in local_pokemon.get_overlapping_bodies():
-		#print("body : ",body.name)
+	var closest_zone = null
+	var closest_position = 1000000
 	for area in local_pokemon.get_overlapping_areas():
-		#print("area : ",area.name)
 		if area is Pokemon:
+			print("oui1")
 			if area.get_parent() is PossessedPokemon:
-				area.get_parent().change_position_in_team_with(self)
-		if area is TeamEmptyPlace:
-			change_position_in_team_with_empty(area)
-		if area is SellPlace:
-			game_stats.change_money(ceil(local_pokemon.price * area.sell_coef))
-			back_to_empty_place()
+				print("oui2")
+				print(position.distance_squared_to(area.position))
+				if position.distance_squared_to(area.position) < closest_position:
+					closest_zone = area
+					closest_position = position.distance_squared_to(area.position)
+		elif area is TeamEmptyPlace || area is SellPlace:
+			if position.distance_squared_to(area.position) < closest_position:
+				closest_zone = area
+				closest_position = position.distance_squared_to(area.position)
+		
+	
+	if closest_zone is Pokemon:
+		closest_zone.get_parent().change_position_in_team_with(self)
+	elif closest_zone is TeamEmptyPlace:
+		change_position_in_team_with_empty(closest_zone)
+	elif closest_zone is SellPlace:
+		game_stats.change_money(ceil(local_pokemon.price * closest_zone.sell_coef))
+		back_to_empty_place()
 
 func back_to_empty_place():
 	var empty_place = load("res://Scene/team_empty_place.tscn").instantiate();

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c847e0h7jmtnm"
+
+[deps]
+
+files=["res://Assets/database/pokemon_database.NAME_FR.translation", "res://Assets/database/pokemon_database.ID.translation", "res://Assets/database/pokemon_database.LIFE.translation", "res://Assets/database/pokemon_database.ATK.translation", "res://Assets/database/pokemon_database.FREQ.translation", "res://Assets/database/pokemon_database.PRICE.translation", "res://Assets/database/pokemon_database.RARITY.translation", "res://Assets/database/pokemon_database.NAME_EN.translation"]
+
+source_file="res://Assets/database/pokemon_database.csv"
+dest_files=["res://Assets/database/pokemon_database.NAME_FR.translation", "res://Assets/database/pokemon_database.ID.translation", "res://Assets/database/pokemon_database.LIFE.translation", "res://Assets/database/pokemon_database.ATK.translation", "res://Assets/database/pokemon_database.FREQ.translation", "res://Assets/database/pokemon_database.PRICE.translation", "res://Assets/database/pokemon_database.RARITY.translation", "res://Assets/database/pokemon_database.NAME_EN.translation"]
+
+[params]
+
+compress=true
+delimiter=0

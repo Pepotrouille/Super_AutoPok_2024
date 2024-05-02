@@ -1,14 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://dg01n774834xx"]
+[gd_scene load_steps=6 format=3 uid="uid://dg01n774834xx"]
 
 [ext_resource type="Script" path="res://Script/pokeshop.gd" id="1_gnwpx"]
 [ext_resource type="PackedScene" uid="uid://d2b4lu0ht1ue6" path="res://Scene/buyable_pokemon.tscn" id="2_dr0j3"]
 [ext_resource type="Texture2D" uid="uid://dpb1kh1frnf6q" path="res://Assets/Images/Placeholder/Pokeshop.png" id="3_lc0hx"]
 [ext_resource type="PackedScene" uid="uid://dte01v3cn1cql" path="res://Scene/team_empty_place.tscn" id="4_eacn5"]
-[ext_resource type="PackedScene" uid="uid://dqkevsq4wplr4" path="res://Scene/game_stats.tscn" id="5_lk27e"]
 [ext_resource type="PackedScene" uid="uid://mtvdbr45jejx" path="res://Scene/sell_place.tscn" id="6_70okw"]
 
-[node name="Pokeshop" type="Node2D"]
+[node name="Pokeshop" type="Node2D" node_paths=PackedStringArray("team_place_1", "team_place_2", "team_place_3", "team_place_4", "team_place_5", "team_place_6")]
 script = ExtResource("1_gnwpx")
+team_place_1 = NodePath("team_empty_place1")
+team_place_2 = NodePath("team_empty_place2")
+team_place_3 = NodePath("team_empty_place3")
+team_place_4 = NodePath("team_empty_place4")
+team_place_5 = NodePath("team_empty_place5")
+team_place_6 = NodePath("team_empty_place6")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1
@@ -64,8 +69,6 @@ offset_top = 39.0
 offset_right = 658.0
 offset_bottom = 100.0
 text = "Pokredits: "
-
-[node name="GameStats" parent="." instance=ExtResource("5_lk27e")]
 
 [node name="SellPlace" parent="." instance=ExtResource("6_70okw")]
 position = Vector2(970, 256)

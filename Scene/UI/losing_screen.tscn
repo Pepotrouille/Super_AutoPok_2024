@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwufr8xkrlh8"]
+[gd_scene load_steps=2 format=3 uid="uid://v6mstcdsnprq"]
 
-[ext_resource type="Script" path="res://Script/UI/winning_screen.gd" id="1_2fopl"]
+[ext_resource type="Script" path="res://Script/UI/losing_screen.gd" id="1_m8nmf"]
 
 [node name="WinningScreen" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2fopl")
+script = ExtResource("1_m8nmf")
 
 [node name="Congrats" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -24,35 +24,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 45
 bbcode_enabled = true
-text = "[center] Combat gagné ! [/center]"
-
-[node name="Continue" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 352.0
-offset_top = 341.0
-offset_right = -616.0
-offset_bottom = -240.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Continuer"
+text = "[center] Combat perdu... [/center]"
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 634.0
+offset_left = 477.0
 offset_top = 342.0
-offset_right = -330.0
+offset_right = -487.0
 offset_bottom = -239.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Quitter"
 
-[node name="Credits" type="RichTextLabel" parent="."]
+[node name="Score" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,7 +51,6 @@ offset_bottom = -335.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[center] Crédits gagnés : [/center] "
+text = "[center] Score final :  [/center] "
 
-[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

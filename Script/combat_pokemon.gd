@@ -18,30 +18,26 @@ signal has_died;
 
 func _ready():
 	if game_stats == null:
-		for node in get_tree().root.get_child(0).get_children():
+		for node in get_tree().root.get_children():
 			if node is GameStats:
 				game_stats = node;
-			if node is CombatScript:
-				combat_script = node;
-
-
-#Pour initialiser un PossessedPokemon avec un type de Pokemon
-func set_combat_pokemon_kind(pokemon_kind : Pokemon.PokemonKind):
-	set_combat_pokemon(Pokemon.create_pokemon(pokemon_kind))
+	for node in get_parent().get_children():
+		if node is CombatScript:
+			combat_script = node;
 
 #Pour initialiser un PossessedPokemon avec un Pokemon existant
 func set_combat_pokemon(pokemon : Pokemon):
-	local_pokemon = pokemon
-	if(local_pokemon.get_parent() != null):
-		local_pokemon.reparent(self)
-	else:
-		add_child(local_pokemon)
-	local_pokemon.position=Vector2.ZERO
-	local_pokemon.scale = Vector2.ONE * 1.5
-	local_pokemon.position.y -= 50
-	local_pokemon.show_life(true)
-	local_pokemon.face_right(is_from_player)
-
+	if pokemon != null:
+		local_pokemon = pokemon
+		if(local_pokemon.get_parent() != null):
+			local_pokemon.reparent(self)
+		else:
+			add_child(local_pokemon)
+		local_pokemon.position=Vector2.ZERO
+		local_pokemon.scale = Vector2.ONE * 1.5
+		local_pokemon.position.y += 20
+		local_pokemon.show_life(true)
+		local_pokemon.face_right(is_from_player)
 
 func make_action():
 	if local_pokemon != null:
@@ -62,7 +58,6 @@ func move():
 
 func is_attacked(lost_pv:int):
 	local_pokemon.change_current_life(-lost_pv)
-	
 
 func check_dying():
 	if local_pokemon != null:
@@ -70,7 +65,8 @@ func check_dying():
 			dies()
 
 func dies():
-	print(name," dying")
+	if !is_from_player:
+		game_stats.add_score(local_pokemon.price)
 	local_pokemon.queue_free()
 	local_pokemon = null
 	has_died.emit()

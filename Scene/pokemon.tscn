@@ -7,8 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3wb7"]
 size = Vector2(122, 118)
 
-[node name="Pokemon" type="Area2D"]
+[node name="Pokemon" type="Area2D" node_paths=PackedStringArray("pokemon_info")]
 script = ExtResource("1_piusb")
+pokemon_info = NodePath("PokemonInfo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -59)
@@ -21,6 +22,8 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_dfiri")
 
 [node name="PokemonInfo" parent="." instance=ExtResource("3_x85v2")]
+position = Vector2(0, -50)
+scale = Vector2(0.8, 0.8)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
