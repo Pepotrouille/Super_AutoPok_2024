@@ -11,7 +11,8 @@ func _ready():
 	var game_stats = GameStats.get_instance()
 	game_stats._money_has_changed.connect(update_amount_money)
 	update_amount_money(game_stats.money)
-	$Score.text = str(game_stats.score)
+	$Score.text = "Score : " + str(game_stats.score)
+	game_stats.increase_difficulty()
 	#Met les pokémons présents dans game stats à l'initialisation
 	randomize_pok_to_buy()
 	print(GameStats.get_instance().pokemon_team[0])
@@ -23,10 +24,10 @@ func _ready():
 func update_amount_money(total_amount:int):#Will be changed to hud scene after
 	$Amount.text = (str(total_amount))
 
-func _on_button_pressed():
+func _on_fight_button_pressed():
 	if GameStats.get_instance().size_team >0:
-		for i in range(1,7):
-			evaluate("team_place_" + str(i) + "")
+		#for i in range(1,7):
+			#evaluate("team_place_" + str(i) + "")
 		get_tree().change_scene_to_file("res://Scene/niveau_test.tscn")
 	else:
 		print("Veuillez prendre au moins un pokémon dans votre équipe")
@@ -34,6 +35,13 @@ func _on_button_pressed():
 
 func _on_quit_pressed():
 	GameStats.get_instance().end_game()
+
+
+func _on_change_buyable_pressed():
+	var game_stats = GameStats.get_instance()
+	game_stats.change_money(-5)
+	update_amount_money(game_stats.money)
+	randomize_pok_to_buy()
 
 func randomize_pok_to_buy():
 	var game_stats = GameStats.get_instance()
@@ -60,5 +68,6 @@ func evaluate(command, variable_names = [], variable_values = []) -> void:
 
 	if not expression.has_execute_failed():
 		pass#print(str(result))
+
 
 

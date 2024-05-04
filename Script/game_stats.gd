@@ -16,6 +16,8 @@ var size_team : int
 
 var score : int = 0
 
+var difficulty : int = 0
+
 @export var csv_pokemon_database : CSVPokemonDatabase
 # Called when the node enters the scene tree for the first time.
 
@@ -24,7 +26,7 @@ static func get_instance() -> GameStats:
 
 func _ready():
 	instance = self
-	money = 80 #temp;
+	money = 30 #temp;
 	_change_money.connect(change_money)
 	for i in range(0,6):
 		pokemon_team.append(null)
@@ -66,9 +68,9 @@ func change_position_in_team(index1 : int, index2 : int):
 	pokemon_team[index2-1] = temp
 
 func end_game():
-	#Envoyer score à l'exterieur
-	for pok in pokemon_team:
-		if(pok):
-			pok.queue_free()
+	##Envoyer score à l'exterieur
 	get_tree().change_scene_to_file("res://Scene/UI/main_menu.tscn")
 	queue_free()
+
+func increase_difficulty():
+	difficulty += 3

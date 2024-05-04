@@ -14,7 +14,7 @@ func set_possessed_pokemon(pokemon : Pokemon):
 			add_child(local_pokemon)
 		position=Vector2.ZERO
 		local_pokemon.position=Vector2.ZERO
-		local_pokemon.position.y = position.y+15
+		local_pokemon.position.y = position.y
 		local_pokemon.set_size(2.5)
 		local_pokemon.mouse_entered.connect(_on_pokemon_mouse_entered)
 		local_pokemon.mouse_exited.connect(_on_pokemon_mouse_exited)
@@ -44,9 +44,7 @@ func _dropped_on_areas():
 	var closest_position = 1000000
 	for area in local_pokemon.get_overlapping_areas():
 		if area is Pokemon:
-			print("oui1")
 			if area.get_parent() is PossessedPokemon:
-				print("oui2")
 				print(position.distance_squared_to(area.position))
 				if position.distance_squared_to(area.position) < closest_position:
 					closest_zone = area

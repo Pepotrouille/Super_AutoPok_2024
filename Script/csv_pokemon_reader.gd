@@ -102,3 +102,16 @@ func get_random_pokemon_team() -> Array:
 	for i in range(0, random_number_of_pok):
 		random_team.append(get_random_pokemon())
 	return random_team
+
+#Level is defined by the sum of the price, defining power
+#Might be changed
+func get_random_pokemon_team_depending_difficulty() -> Array:
+	var random_team : Array = []
+	var current_difficulty = GameStats.get_instance().difficulty
+	var sum_difficulties = 0
+	for i in range(0, 6):
+		random_team.append(get_random_pokemon())
+		sum_difficulties += random_team.back().price
+		if sum_difficulties >= current_difficulty:
+			break
+	return random_team

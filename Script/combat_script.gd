@@ -142,9 +142,18 @@ func check_remaining_pokemon_adv():
 			adv_lost=true
 
 func set_money_to_win():
-	for i in range (0,6):
-		#Faire en sort qu'il bypass en cas dde places vides
-		evaluate("add_money_to_win(adv_pokemon_" + str(i) + ".local_pokemon.price / 2)")
+	if adv_pokemon_1.local_pokemon:
+		add_money_to_win(adv_pokemon_1.local_pokemon.price / 2)
+	if adv_pokemon_2.local_pokemon:
+		add_money_to_win(adv_pokemon_2.local_pokemon.price / 2)
+	if adv_pokemon_3.local_pokemon:
+		add_money_to_win(adv_pokemon_3.local_pokemon.price / 2)
+	if adv_pokemon_4.local_pokemon:
+		add_money_to_win(adv_pokemon_4.local_pokemon.price / 2)
+	if adv_pokemon_5.local_pokemon:
+		add_money_to_win(adv_pokemon_5.local_pokemon.price / 2)
+	if adv_pokemon_6.local_pokemon:
+		add_money_to_win(adv_pokemon_6.local_pokemon.price / 2)
 
 func add_money_to_win(money_amount : int):
 	money_to_win += money_amount
@@ -159,7 +168,7 @@ func ends_in_victory():
 	
 	for i in range (1,7):
 		evaluate("game_stats.set_pokemon(" + str(i) + ", player_pokemon_" + str(i) + ".local_pokemon)", ["game_stats"], [GameStats.get_instance()])
-	for i in range (0,6):
+	for i in range (1,7):
 		evaluate("player_pokemon_" + str(i) + ".reparent(game_stats)", ["game_stats"], [GameStats.get_instance()])
 	##Penser à mettre un Canvas nommé CanvasLayer dans la scène
 	get_parent().find_child("CanvasLayer").add_child(winning_screen)
@@ -173,7 +182,7 @@ func ends_in_defeat():
 ## -- TEST -- ##
 
 func set_adv_pokemon_test():
-	var new_adv_team = GameStats.get_instance().csv_pokemon_database.get_random_pokemon_team()
+	var new_adv_team = GameStats.get_instance().csv_pokemon_database.get_random_pokemon_team_depending_difficulty()
 	for i in range(0, new_adv_team.size()):
 		#print(new_adv_team[i].pok_name)
 		evaluate("adv_pokemon_" + str(i+1) + ".set_combat_pokemon(new_adv_pok)", ["new_adv_pok"],[new_adv_team[i]])

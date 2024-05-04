@@ -20,10 +20,11 @@ texture_filter = 1
 position = Vector2(0, -59)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_dfiri")
+offset = Vector2(0, 10)
 
 [node name="PokemonInfo" parent="." instance=ExtResource("3_x85v2")]
-position = Vector2(0, -50)
-scale = Vector2(0.8, 0.8)
+position = Vector2(0, 10)
+scale = Vector2(0.4, 0.4)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

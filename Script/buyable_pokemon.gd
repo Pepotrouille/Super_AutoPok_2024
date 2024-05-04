@@ -3,6 +3,8 @@ extends MovablePokemon
 class_name BuyablePokemon
 
 func set_pokemon_to_buy(pokemon : Pokemon):
+	if local_pokemon:
+		local_pokemon.queue_free()
 	local_pokemon = pokemon
 	local_pokemon.mouse_entered.connect(_on_pokemon_mouse_entered)
 	local_pokemon.mouse_exited.connect(_on_pokemon_mouse_exited)
@@ -27,4 +29,4 @@ func buy_pokemon_in_empty_place(team_empty_place : TeamEmptyPlace):
 			game_stats._change_money.emit(-local_pokemon.price)
 			team_empty_place.fill_place(local_pokemon)
 			_pokemon_is_not_moving.emit()
-			queue_free();
+			local_pokemon = null

@@ -60,15 +60,15 @@ scale = Vector2(6, 6)
 texture = ExtResource("11_bdbpi")
 
 [node name="BuyablePokemon1" parent="." instance=ExtResource("2_dr0j3")]
-position = Vector2(795, 706)
+position = Vector2(800, 705)
 scale = Vector2(2.5, 2.5)
 
 [node name="BuyablePokemon2" parent="." instance=ExtResource("2_dr0j3")]
-position = Vector2(1111, 706)
+position = Vector2(1050, 705)
 scale = Vector2(2.5, 2.5)
 
 [node name="BuyablePokemon3" parent="." instance=ExtResource("2_dr0j3")]
-position = Vector2(1369, 706)
+position = Vector2(1300, 705)
 scale = Vector2(2.5, 2.5)
 
 [node name="team_empty_place1" parent="." instance=ExtResource("4_eacn5")]
@@ -167,8 +167,18 @@ theme_override_font_sizes/normal_font_size = 65
 text = "Score : 5"
 
 [node name="SellPlace" parent="." instance=ExtResource("6_70okw")]
-position = Vector2(1192, 329)
+position = Vector2(1143, 319)
 
+[node name="Change_Buyable" type="Button" parent="."]
+offset_left = 720.0
+offset_top = 353.0
+offset_right = 957.0
+offset_bottom = 422.0
+text = "Changer tirage (coûte 5 pokédollars)
+"
+
+[connection signal="pressed" from="Fight_button" to="." method="_on_fight_button_pressed"]
 [connection signal="pressed" from="Fight_button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Change_Buyable" to="." method="_on_change_buyable_pressed"]

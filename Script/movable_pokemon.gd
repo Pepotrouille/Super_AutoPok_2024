@@ -54,13 +54,15 @@ func _process(_delta):
 			
 			
 func _on_pokemon_mouse_entered():
-	if current_selected == null:
-		is_hovered = true;
-	local_pokemon.show_info(true)
+	if local_pokemon:
+		if current_selected == null:
+			is_hovered = true;
+		local_pokemon.show_info(true)
 
 func _on_pokemon_mouse_exited():
-	is_hovered = false
-	local_pokemon.show_info(false)
+	if local_pokemon:
+		is_hovered = false
+		local_pokemon.show_info(false)
 
 #Virtual : permet aux classes héritante de redéfinir la fonction appelée au lâché
 func _dropped_on_areas():

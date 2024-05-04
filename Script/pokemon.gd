@@ -39,6 +39,7 @@ var life : int;
 
 
 func set_stats(new_type : PokemonType, new_pokemon_name : String, new_pokemon_id : String, new_max_life : int, new_atk : int, new_freq_atk : int, new_price : int):
+	#Set attributes
 	pok_type = new_type
 	pok_name = new_pokemon_name
 	pokemon_id = new_pokemon_id
@@ -47,16 +48,17 @@ func set_stats(new_type : PokemonType, new_pokemon_name : String, new_pokemon_id
 	price = new_price
 	freq_attack = new_freq_atk
 	attack = new_atk
-	$PokemonInfo.set_max_life(max_life)
-	$PokemonInfo.set_current_life(life)
-	$PokemonInfo.set_attack(attack)
+	$PokemonInfo.set_info(pok_name, max_life, life, attack, price, pok_type, freq_attack)
+	
+	#Set the image
 	var new_path = pokemon_image_path + pokemon_id + ".png"
 	if FileAccess.file_exists(new_path):
 		$Sprite2D.texture = load(new_path)
 	else :
 		$Sprite2D.texture = load(pokemon_image_path_sub)
+		
+	#Fix the position
 	$Sprite2D.scale = Vector2.ONE*3
-	$Sprite2D.position.y += 30
 		
 
 func set_current_life(current_life:int):
