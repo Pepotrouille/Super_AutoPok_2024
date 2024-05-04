@@ -4,8 +4,6 @@ class_name CombatPokemon
 
 var local_pokemon : Pokemon;
 
-static var game_stats : GameStats;
-
 static var combat_script : CombatScript;
 
 @export var index_in_team : int;
@@ -17,10 +15,6 @@ var is_from_player : bool;
 signal has_died;
 
 func _ready():
-	if game_stats == null:
-		for node in get_tree().root.get_children():
-			if node is GameStats:
-				game_stats = node;
 	for node in get_parent().get_children():
 		if node is CombatScript:
 			combat_script = node;
@@ -66,7 +60,7 @@ func check_dying():
 
 func dies():
 	if !is_from_player:
-		game_stats.add_score(local_pokemon.price)
+		GameStats.get_instance().add_score(local_pokemon.price)
 	local_pokemon.queue_free()
 	local_pokemon = null
 	has_died.emit()

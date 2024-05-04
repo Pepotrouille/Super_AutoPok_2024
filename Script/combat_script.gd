@@ -2,8 +2,6 @@ extends Node
 
 class_name CombatScript
 
-var game_stats : GameStats
-
 var base_player_team : Array;
 @export var player_pokemon_1 : CombatPokemon; 
 @export var player_pokemon_2 : CombatPokemon; 
@@ -34,12 +32,8 @@ var money_to_win : int = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(get_tree().root.get_children())
-	for node in get_tree().root.get_children():
-		if node is GameStats:
-			game_stats = node
 	set_places()
-	set_player_pokemon(game_stats.pokemon_team)
+	set_player_pokemon(GameStats.get_instance().pokemon_team)
 	set_adv_pokemon_test()
 	set_money_to_win()
 
@@ -72,7 +66,7 @@ func set_places():
 		evaluate("adv_pokemon_"+ str(i) +".set_is_from_player(false)")
 
 func set_player_pokemon(team_pok : Array):
-	base_adv_team = team_pok #Permet d'utiliser la team dans la fonction evaluate. Peut être remplacé par passage d'argument.
+	#base_adv_team = team_pok #Permet d'utiliser la team dans la fonction evaluate. Peut être remplacé par passage d'argument.
 	base_player_team = team_pok
 	for i in range(1,7):
 		evaluate("player_pokemon_"+ str(i) +".set_combat_pokemon(base_player_team["+str(i-1) +"])")
@@ -149,41 +143,40 @@ func check_remaining_pokemon_adv():
 
 func set_money_to_win():
 	for i in range (0,6):
+		#Faire en sort qu'il bypass en cas dde places vides
 		evaluate("add_money_to_win(adv_pokemon_" + str(i) + ".local_pokemon.price / 2)")
 
 func add_money_to_win(money_amount : int):
 	money_to_win += money_amount
 
 func ends_in_victory():
-	print("Victoire : Joueur")
 	game_ended = true
 	var winning_screen = load("res://Scene/UI/winning_screen.tscn").instantiate()
 	
 	#Gère les crédits gagnés
 	winning_screen.set_winning_screen(money_to_win)
-	game_stats.change_money(money_to_win)
+	GameStats.get_instance().change_money(money_to_win)
 	
 	for i in range (1,7):
-		evaluate("game_stats.set_pokemon(" + str(i) + ", player_pokemon_" + str(i) + ".local_pokemon)")
+		evaluate("game_stats.set_pokemon(" + str(i) + ", player_pokemon_" + str(i) + ".local_pokemon)", ["game_stats"], [GameStats.get_instance()])
 	for i in range (0,6):
-		evaluate("player_pokemon_" + str(i) + ".reparent(game_stats)")
-	#game_stats.set_team([	player_pokemon_1.local_pokemon, player_pokemon_2.local_pokemon, 
-	#						player_pokemon_3.local_pokemon, player_pokemon_4.local_pokemon, 
-	#						player_pokemon_5.local_pokemon, player_pokemon_6.local_pokemon])
+		evaluate("player_pokemon_" + str(i) + ".reparent(game_stats)", ["game_stats"], [GameStats.get_instance()])
 	##Penser à mettre un Canvas nommé CanvasLayer dans la scène
 	get_parent().find_child("CanvasLayer").add_child(winning_screen)
 
 func ends_in_defeat():
-	print("Perdu")
 	game_ended = true
 	var losing_screen = load("res://Scene/UI/losing_screen.tscn").instantiate()
-	losing_screen.set_losing_screen(game_stats.score)
+	losing_screen.set_losing_screen(GameStats.get_instance().score)
 	get_parent().find_child("CanvasLayer").add_child(losing_screen)
 	
 ## -- TEST -- ##
 
 func set_adv_pokemon_test():
-	adv_pokemon_2.set_combat_pokemon(Pokemon.create_pokemon("Boumata",game_stats.csv_pokemon_database ))
+	var new_adv_team = GameStats.get_instance().csv_pokemon_database.get_random_pokemon_team()
+	for i in range(0, new_adv_team.size()):
+		#print(new_adv_team[i].pok_name)
+		evaluate("adv_pokemon_" + str(i+1) + ".set_combat_pokemon(new_adv_pok)", ["new_adv_pok"],[new_adv_team[i]])
 ## ---------- ##
 
 #Tiré de la doc Godot :

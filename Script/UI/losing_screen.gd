@@ -10,4 +10,4 @@ func set_losing_screen(final_score : int):
 
 
 func _on_quit_pressed():
-	get_tree().change_scene_to_file("res://Scene/UI/main_menu.tscn")
+	GameStats.get_instance().end_game()

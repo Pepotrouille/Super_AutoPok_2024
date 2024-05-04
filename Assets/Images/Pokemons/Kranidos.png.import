@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8o5jkgxfi0wv"
-path="res://.godot/imported/Germignion.png-097eadd9bb568364b050f81e15b97f3f.ctex"
+uid="uid://c0p6x4fddulla"
+path="res://.godot/imported/Kranidos.png-429592b8be2bedcafb3e419855ed66f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Pokemons/Germignion.png"
-dest_files=["res://.godot/imported/Germignion.png-097eadd9bb568364b050f81e15b97f3f.ctex"]
+source_file="res://Assets/Images/Pokemons/Kranidos.png"
+dest_files=["res://.godot/imported/Kranidos.png-429592b8be2bedcafb3e419855ed66f4.ctex"]
 
 [params]
 

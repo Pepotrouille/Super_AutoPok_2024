@@ -14,4 +14,4 @@ func _on_continue_pressed():
 	get_tree().change_scene_to_file("res://Scene/Niveaux/pokeshop.tscn")
 
 func _on_quit_pressed():
-	get_tree().change_scene_to_file("res://Scene/UI/main_menu.tscn")
+	GameStats.get_instance().end_game()

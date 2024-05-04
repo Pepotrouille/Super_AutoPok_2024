@@ -47,7 +47,6 @@ func set_stats(new_type : PokemonType, new_pokemon_name : String, new_pokemon_id
 	price = new_price
 	freq_attack = new_freq_atk
 	attack = new_atk
-	print(max_life)
 	$PokemonInfo.set_max_life(max_life)
 	$PokemonInfo.set_current_life(life)
 	$PokemonInfo.set_attack(attack)

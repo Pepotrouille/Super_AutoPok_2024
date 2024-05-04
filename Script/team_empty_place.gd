@@ -5,8 +5,6 @@ class_name TeamEmptyPlace
 var is_highlighted : bool = false;
 var light_is_decreasing : bool = true;
 
-var game_stats :GameStats;
-
 signal _new_movable(new_movable : MovablePokemon);
 
 @export var index : int = 1;
@@ -16,16 +14,10 @@ static var empty_places_in_scene : Array;
 func _ready():
 	modulate.a = 0
 	empty_places_in_scene.append(self)
-	if game_stats == null:
-		for node in get_tree().root.get_children():
-			if node is GameStats:
-				game_stats = node;
 	for node in get_tree().root.get_child(0).get_children():
 		if node is MovablePokemon:
 			node._pokemon_is_moving.connect(pokemon_selected)
 			node._pokemon_is_not_moving.connect(pokemon_unselected)
-		if node is GameStats:
-			game_stats = node
 
 
 func _process(_delta):
@@ -57,11 +49,10 @@ func pokemon_unselected():
 
 func fill_place(pokemon : Pokemon):
 	if pokemon != null :
-		print("AJOUT EN COURS")
 		var filled_place = load("res://Scene/possessed_pokemon.tscn").instantiate();
 		filled_place.index = index
 		filled_place.set_possessed_pokemon(pokemon);
-		game_stats.set_pokemon(index, pokemon)
+		GameStats.get_instance().set_pokemon(index, pokemon)
 		pokemon.scale = Vector2.ONE *1.5
 		pokemon.z_index = 1
 		pokemon.face_right(false)

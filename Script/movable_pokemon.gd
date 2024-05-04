@@ -6,8 +6,6 @@ var local_pokemon : Pokemon;
 
 static var current_selected : Pokemon = null;
 
-static var game_stats : GameStats;
-
 var is_hovered : bool = false;
 
 var is_moving : bool = false;
@@ -20,12 +18,7 @@ signal _pokemon_is_moving();
 signal _pokemon_is_not_moving();
 
 func _ready():
-	print("NOUVEAU")
 	base_position = position
-	if game_stats == null:
-		for node in get_tree().root.get_children():
-			if node is GameStats:
-				game_stats = node;
 	for empty_place in TeamEmptyPlace.empty_places_in_scene:
 		if empty_place != null:
 			empty_place.new_movable_in_scene(self)

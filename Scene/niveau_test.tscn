@@ -8,27 +8,24 @@
 
 [node name="NiveauTest" type="Node2D"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
-z_index = -1
+[node name="TextureRect" type="Sprite2D" parent="."]
+z_index = -5
 texture_filter = 1
-offset_right = 40.0
-offset_bottom = 40.0
+position = Vector2(576, 324)
 scale = Vector2(6, 6)
 texture = ExtResource("2_vcq67")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
-z_index = -1
+[node name="TextureRect2" type="Sprite2D" parent="."]
+z_index = -5
 texture_filter = 1
-offset_right = 40.0
-offset_bottom = 40.0
+position = Vector2(576, 324)
 scale = Vector2(6, 6)
 texture = ExtResource("3_i6uo8")
 
-[node name="TextureRect3" type="TextureRect" parent="."]
-z_index = 1
+[node name="TextureRect3" type="Sprite2D" parent="."]
+z_index = 10
 texture_filter = 1
-offset_right = 40.0
-offset_bottom = 40.0
+position = Vector2(576, 324)
 scale = Vector2(6, 6)
 texture = ExtResource("4_fcwyw")
 
@@ -38,22 +35,27 @@ scale = Vector2(2, 2)
 index_in_team = 1
 
 [node name="player_pokemon_2" parent="." instance=ExtResource("6_bqec6")]
+z_index = 1
 position = Vector2(297, 530)
 index_in_team = 2
 
 [node name="player_pokemon_3" parent="." instance=ExtResource("6_bqec6")]
+z_index = 2
 position = Vector2(236, 573)
 index_in_team = 3
 
 [node name="player_pokemon_4" parent="." instance=ExtResource("6_bqec6")]
+z_index = 1
 position = Vector2(179, 530)
 index_in_team = 4
 
 [node name="player_pokemon_5" parent="." instance=ExtResource("6_bqec6")]
+z_index = 2
 position = Vector2(118, 573)
 index_in_team = 5
 
 [node name="player_pokemon_6" parent="." instance=ExtResource("6_bqec6")]
+z_index = 1
 position = Vector2(66, 530)
 index_in_team = 6
 
@@ -77,22 +79,27 @@ scale = Vector2(2, 2)
 index_in_team = 1
 
 [node name="adv_pokemon_2" parent="." instance=ExtResource("6_bqec6")]
+z_index = -1
 position = Vector2(829, 374)
 index_in_team = 2
 
 [node name="adv_pokemon_3" parent="." instance=ExtResource("6_bqec6")]
+z_index = -2
 position = Vector2(882, 330)
 index_in_team = 3
 
 [node name="adv_pokemon_4" parent="." instance=ExtResource("6_bqec6")]
+z_index = -1
 position = Vector2(957, 374)
 index_in_team = 4
 
 [node name="adv_pokemon_5" parent="." instance=ExtResource("6_bqec6")]
+z_index = -2
 position = Vector2(1010, 330)
 index_in_team = 5
 
 [node name="adv_pokemon_6" parent="." instance=ExtResource("6_bqec6")]
+z_index = -1
 position = Vector2(1070, 374)
 index_in_team = 6
 

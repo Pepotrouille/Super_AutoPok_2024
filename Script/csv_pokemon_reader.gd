@@ -82,7 +82,7 @@ func get_price_from_pokemon_stats(pokemon_stat : Array) -> int:
 
 func get_random_pokemon() -> Pokemon:
 	var random_rarity_index = rng.randi_range(1, pok_total_rarity)
-	print("Rarity: ", random_rarity_index)
+	#print("Rarity: ", random_rarity_index)
 	var current_rarity_index = 0
 	pok_bdd = FileAccess.open(pokemon_database_path, FileAccess.READ)
 	pok_bdd.get_csv_line()
@@ -91,7 +91,14 @@ func get_random_pokemon() -> Pokemon:
 		if pokemon_stat.size()>=7:
 			current_rarity_index += get_rarity_from_pokemon_stats(pokemon_stat)
 			if current_rarity_index > random_rarity_index:
-				print("Pokémon: ", pokemon_stat[1])
+				#print("Pokémon: ", pokemon_stat[1])
 				return get_pokemon(pokemon_stat[2])
 	#In case of an error, return Fuecoco
 	return get_pokemon("Chochodile")
+
+func get_random_pokemon_team() -> Array:
+	var random_number_of_pok = rng.randi_range(1, 3)
+	var random_team : Array = []
+	for i in range(0, random_number_of_pok):
+		random_team.append(get_random_pokemon())
+	return random_team
