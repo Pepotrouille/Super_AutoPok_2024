@@ -2,7 +2,20 @@ extends Area2D
 
 class_name Pokemon
 
-enum PokemonType {FIRE, WATER, GRASS, ELECTRIC, POISON, ROCK, FLYING, FIGHTING, NORMAL, NULL}
+enum PokemonType {FIRE, WATER, GRASS, ELECTRIC, POISON, ROCK, FLYING, FIGHTING, NORMAL}
+
+static var type_vs = [
+	[0.5, 0.5, 2, 1, 1, 0.5, 1, 1, 1], 
+	[2, 0.5,0.5, 1, 1, 2, 1, 1, 1],
+	[0.5, 2, 0.5, 1, 0.5,2, 0.5, 1, 1],
+	[1, 0, 0.5, 0.5, 1, 1, 2, 1, 1],
+	[1, 1, 2, 1, 1, 0.5, 1, 1, 1],
+	[2, 1, 1, 1, 1, 1, 2, 0.5, 1],
+	[1, 1, 2, 0.5, 1, 0.5, 1, 2, 1],
+	[1, 1, 1, 1, 0.5, 2, 0.5, 1, 2],
+	[1, 1, 1, 1, 1 ,1, 0.5, 1, 1]
+]
+
 
 static var pokemon_image_path = "res://Assets/Images/Pokemons/"
 static var pokemon_image_path_sub = "res://Assets/Images/Pokemons/SubstituteDoll.png"
@@ -23,6 +36,8 @@ static func create_pokemon(new_pokemon_id : String, csv_pokemon_database : CSVPo
 		return pokemon
 	return null
 
+static func coef_from_types(offensive_type: PokemonType, defensive_type: PokemonType) -> float:
+	return type_vs[offensive_type][defensive_type]
 
 var pok_type : PokemonType;
 var pok_name : String = "Salamèche";

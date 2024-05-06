@@ -38,10 +38,10 @@ func make_action():
 		if index_in_team == 1:
 			if is_from_player: 
 				if combat_script.adv_pokemon_1.local_pokemon != null:
-					combat_script.adv_pokemon_1.is_attacked(local_pokemon.attack)
+					combat_script.adv_pokemon_1.is_attacked(local_pokemon)
 			else:
 				if combat_script.player_pokemon_1.local_pokemon != null:
-					combat_script.player_pokemon_1.is_attacked(local_pokemon.attack)
+					combat_script.player_pokemon_1.is_attacked(local_pokemon)
 
 func move(): 
 	if local_pokemon != null:
@@ -50,8 +50,10 @@ func move():
 				next_place.set_combat_pokemon(local_pokemon)
 				local_pokemon = null
 
-func is_attacked(lost_pv:int):
-	local_pokemon.change_current_life(-lost_pv)
+func is_attacked(adversary_Pokemon:Pokemon):
+	var attack_coef = Pokemon.coef_from_types(adversary_Pokemon.pok_type, local_pokemon.pok_type)
+	##Montrer l'effet de l'attaque (super efficace etc) selon coef (match())
+	local_pokemon.change_current_life(-adversary_Pokemon.attack * attack_coef)
 
 func check_dying():
 	if local_pokemon != null:
