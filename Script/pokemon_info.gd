@@ -2,6 +2,12 @@ extends Node2D
 
 class_name PokemonInfo
 
+###--------------------------------------------------------------------
+###-                              METHODS                             -
+###--------------------------------------------------------------------
+
+##========================Ititialization====================
+
 func set_info(pokemon_name : String, max_life:int, current_life:int, attak_value:int, price:int, type: Pokemon.PokemonType, freq:int):
 	set_pokemon_name(pokemon_name)
 	set_max_life(max_life)
@@ -11,6 +17,7 @@ func set_info(pokemon_name : String, max_life:int, current_life:int, attak_value
 	set_type(type)
 	set_freq_atk(freq)
 
+##========================Visibility====================
 
 func show_life(is_now_visible:bool):
 	show_info(false)
@@ -34,6 +41,8 @@ func show_info_only(is_now_visible:bool):
 	$Type.visible = is_now_visible
 	$BG.visible = is_now_visible
 
+##========================Set infos====================
+
 func set_pokemon_name(pokemon_name : String):
 	$NameDisplay.text = "[center]" + pokemon_name + "[/center]"
 
@@ -46,13 +55,13 @@ func set_current_life(current_life:int):
 	set_text_on_progress_bar(str($LifeBar.value) + "/" + str($LifeBar.max_value))
 
 func set_attack(attak_value:int):
-	$AttackDisplayValue.text = str(attak_value)
+	$AttackDisplayValue.text = "[center]" + str(attak_value)
 
 func set_price(price:int):
-	$PriceDisplayValue.text = str(price)
+	$PriceDisplayValue.text = "[center]" + str(price)
 
 func set_freq_atk(freq:int):
-	$FreqAtkDisplayValue.text = str(freq)
+	$FreqAtkDisplayValue.text = "[center]" + str(freq)
 
 func set_type(type: Pokemon.PokemonType):
 	$Type.texture = load("res://Assets/Images/UI/Type/Type_" + (Pokemon.PokemonType.keys()[type]).to_camel_case() +".png")

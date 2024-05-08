@@ -2,10 +2,14 @@ extends Node2D
 
 class_name CombatPokemon
 
+###--------------------------------------------------------------------
+###-                             ATTRIBUTES                           -
+###--------------------------------------------------------------------
+
+
 var local_pokemon : Pokemon;
 
 static var combat_script : CombatScript;
-
 
 var next_place : CombatPokemon = null;
 
@@ -15,6 +19,12 @@ signal has_died;
 
 @export var index_in_team : int;
 
+###--------------------------------------------------------------------
+###-                              METHODS                             -
+###--------------------------------------------------------------------
+ 
+
+##========================Initialization====================
 func _ready():
 	for node in get_parent().get_children():
 		if node is CombatScript:
@@ -33,6 +43,8 @@ func set_combat_pokemon(pokemon : Pokemon):
 		local_pokemon.position.y += 20
 		local_pokemon.show_life(true)
 		local_pokemon.face_right(is_from_player)
+
+##========================Combat Methods====================
 
 func make_action():
 	if local_pokemon != null:

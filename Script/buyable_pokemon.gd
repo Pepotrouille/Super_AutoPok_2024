@@ -16,7 +16,6 @@ func _dropped_on_areas():
 	for area in local_pokemon.get_overlapping_areas():
 		if area is TeamEmptyPlace:
 			buy_pokemon_in_empty_place(area)
-			
 
 func buy_pokemon_in_empty_place(team_empty_place : TeamEmptyPlace):
 	var game_stats = GameStats.get_instance()

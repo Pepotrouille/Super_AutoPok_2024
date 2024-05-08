@@ -2,6 +2,10 @@ extends Area2D
 
 class_name TeamEmptyPlace
 
+###--------------------------------------------------------------------
+###-                            ATTRIBUTES                            -
+###--------------------------------------------------------------------
+
 var is_highlighted : bool = false;
 var light_is_decreasing : bool = true;
 
@@ -11,6 +15,11 @@ signal _new_movable(new_movable : MovablePokemon);
 
 static var empty_places_in_scene : Array;
 
+###--------------------------------------------------------------------
+###-                              METHODS                             -
+###--------------------------------------------------------------------
+
+##========================Ititialization====================
 func _ready():
 	modulate.a = 0
 	empty_places_in_scene.append(self)
@@ -32,13 +41,9 @@ func _process(_delta):
 				modulate.a += 0.005
 			else:
 				light_is_decreasing = true
-	
-				
 
-func new_movable_in_scene(new_movable : MovablePokemon):
-	new_movable._pokemon_is_moving.connect(pokemon_selected)
-	new_movable._pokemon_is_not_moving.connect(pokemon_unselected)
 
+##========================Signal====================
 func pokemon_selected():
 	is_highlighted = true
 	modulate.a = 0.3
@@ -46,6 +51,12 @@ func pokemon_selected():
 func pokemon_unselected():
 	is_highlighted = false
 	modulate.a = 0
+
+##========================Updates==================== 
+
+func new_movable_in_scene(new_movable : MovablePokemon):
+	new_movable._pokemon_is_moving.connect(pokemon_selected)
+	new_movable._pokemon_is_not_moving.connect(pokemon_unselected)
 
 func fill_place(pokemon : Pokemon):
 	if pokemon != null :

@@ -1,13 +1,11 @@
 extends Node2D
 
+###--------------------------------------------------------------------
+###-                              METHODS                             -
+###--------------------------------------------------------------------
 @export_category("Pokeshop's elements")
 @export_group("Player Team")
-@export var team_place_1 : TeamEmptyPlace; 
-@export var team_place_2 : TeamEmptyPlace; 
-@export var team_place_3 : TeamEmptyPlace; 
-@export var team_place_4 : TeamEmptyPlace; 
-@export var team_place_5 : TeamEmptyPlace; 
-@export var team_place_6 : TeamEmptyPlace; 
+@export var player_team : Array[Node2D];
 
 @export_group("Ennemy Team")
 @export var ennemy_team : Array[PreviewPokemon];
@@ -17,6 +15,12 @@ extends Node2D
 @export var buyable_pokemons : Array[BuyablePokemon];
 # Called when the node enters the scene tree for the first time.
 
+@export_group("Pokeshop parameters")
+@export var price_refill : int = 2;
+
+###--------------------------------------------------------------------
+###-                              METHODS                             -
+###--------------------------------------------------------------------
 
 ##========================Set up====================
 
@@ -31,7 +35,8 @@ func _ready():
 	print(GameStats.get_instance().pokemon_team[0])
 	preview_ennemies()
 	for i in range(0,6): 
-		evaluate("team_place_" + str(i+1) + ".fill_place(game_stats.pokemon_team[" + str(i) +"])", ["game_stats"], [GameStats.get_instance()])
+		player_team[i].fill_place(game_stats.pokemon_team[i])
+	$Change_Buyable.text = "Changer tirage (coûte " + str(price_refill) + " pokédollars)"
 
 func update_amount_money(total_amount:int):#Will be changed to hud scene after
 	$Amount.text = (str(total_amount))
@@ -59,29 +64,11 @@ func preview_ennemies() -> void:
 		ennemy_team[i].set_preview_pokemon(pok)
 		i += 1
 
-#Tiré de la doc Godot :
-#https://docs.godotengine.org/fr/4.x/tutorials/scripting/evaluating_expressions.html
-#Permet de factoriser des fonctions en transformants des strings en fonctions
-#Permettant par exemple une itération dans des variables.
-#ATTENTION : ne marche que sur des fonctions, par sur des sets directs (machin = chose)
-func evaluate(command, variable_names = [], variable_values = []) -> void:
-	#print(command)
-	var expression = Expression.new()
-	var error = expression.parse(command, variable_names)
-	if error != OK:
-		push_error(expression.get_error_text())
-		return
-
-	var _result = expression.execute(variable_values, self)
-
-	if not expression.has_execute_failed():
-		pass#print(str(result))
-
-
 ##========================Scene Buttons====================
 
 func _on_fight_button_pressed():
 	var game_stats = GameStats.get_instance()
+	print(game_stats.size_team)
 	if game_stats.size_team >0:
 		for preview in ennemy_team:
 			if preview.local_pokemon:
@@ -97,8 +84,8 @@ func _on_quit_pressed():
 
 func _on_change_buyable_pressed():
 	var game_stats = GameStats.get_instance()
-	if game_stats.money >=5:
-		game_stats.change_money(-5)
+	if game_stats.money >= price_refill:
+		game_stats.change_money(-price_refill)
 		update_amount_money(game_stats.money)
 		randomize_pok_to_buy()
 	else:

@@ -8,6 +8,9 @@ var pok_ids : Array
 var pok_total_rarity : int
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
+
+##========================Instanciation====================
+
 func _ready():
 	instantiate_variables()
 
@@ -23,6 +26,12 @@ func instantiate_variables():
 		if pokemon_stat.size()>=7:
 			pok_ids.append(pokemon_stat[2])
 			pok_total_rarity += int(pokemon_stat[7])
+
+##-----------------------------------------------------------------
+##-                    Pokemon from CSV file                      -
+##-----------------------------------------------------------------
+
+##========================Specific Pokemon====================
 
 func get_list_pokemon():
 	var pokemon_list = []
@@ -56,29 +65,7 @@ func get_pokemon(pokemon_id : String) -> Pokemon:
 	var pokemon = Pokemon.create_pokemon(pokemon_id, self)
 	return pokemon
 
-func get_type_from_pokemon_stats(pokemon_stat : Array) -> String:
-	return pokemon_stat[0]
-
-func get_fr_name_from_pokemon_stats(pokemon_stat : Array) -> String:
-	return pokemon_stat[1]
-
-func get_en_name_from_pokemon_stats(pokemon_stat : Array) -> String:
-	return pokemon_stat[8]
-
-func get_atk_from_pokemon_stats(pokemon_stat : Array) -> int:
-	return int(pokemon_stat[4])
-
-func get_freq_atk_from_pokemon_stats(pokemon_stat : Array) -> int:
-	return int(pokemon_stat[5])
-
-func get_life_from_pokemon_stats(pokemon_stat : Array) -> int:
-	return int(pokemon_stat[3])
-
-func get_rarity_from_pokemon_stats(pokemon_stat : Array) -> int:
-	return int(pokemon_stat[7])
-
-func get_price_from_pokemon_stats(pokemon_stat : Array) -> int:
-	return int(pokemon_stat[6])
+##========================Random Pokemon====================
 
 func get_random_pokemon() -> Pokemon:
 	var random_rarity_index = rng.randi_range(1, pok_total_rarity)
@@ -115,3 +102,29 @@ func get_random_pokemon_team_depending_difficulty() -> Array:
 		if sum_difficulties >= current_difficulty:
 			break
 	return random_team
+
+##========================Pokemon characteristics====================
+
+func get_type_from_pokemon_stats(pokemon_stat : Array) -> String:
+	return pokemon_stat[0]
+
+func get_fr_name_from_pokemon_stats(pokemon_stat : Array) -> String:
+	return pokemon_stat[1]
+
+func get_en_name_from_pokemon_stats(pokemon_stat : Array) -> String:
+	return pokemon_stat[8]
+
+func get_atk_from_pokemon_stats(pokemon_stat : Array) -> int:
+	return int(pokemon_stat[4])
+
+func get_freq_atk_from_pokemon_stats(pokemon_stat : Array) -> int:
+	return int(pokemon_stat[5])
+
+func get_life_from_pokemon_stats(pokemon_stat : Array) -> int:
+	return int(pokemon_stat[3])
+
+func get_rarity_from_pokemon_stats(pokemon_stat : Array) -> int:
+	return int(pokemon_stat[7])
+
+func get_price_from_pokemon_stats(pokemon_stat : Array) -> int:
+	return int(pokemon_stat[6])

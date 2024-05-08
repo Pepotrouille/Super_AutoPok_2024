@@ -13,7 +13,7 @@ pokemon_info = NodePath("PokemonInfo")
 pokemon_top_info = NodePath("PokemonTopInfo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, -59)
+position = Vector2(2, -30)
 shape = SubResource("RectangleShape2D_l3wb7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -30,7 +30,7 @@ scale = Vector2(0.4, 0.4)
 
 [node name="PokemonTopInfo" parent="." instance=ExtResource("3_x85v2")]
 z_index = 1
-position = Vector2(0, -196)
+position = Vector2(0, -183)
 scale = Vector2(0.4, 0.4)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

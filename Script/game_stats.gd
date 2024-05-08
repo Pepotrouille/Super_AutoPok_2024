@@ -2,6 +2,10 @@ extends Node
 
 class_name GameStats
 
+###--------------------------------------------------------------------
+###-                             ATTRIBUTES                           -
+###--------------------------------------------------------------------
+
 static var money : int = 50;
 
 static var instance : GameStats;
@@ -15,6 +19,9 @@ var pokemon_team : Array
 var pokemon_ennemy_team : Array
 
 var size_team : int = 0
+var size_ennemy_team : int = 0
+
+var game_paused : bool = false
 
 var score : int = 0
 
@@ -81,7 +88,7 @@ func set_team(new_pokemon_team):
 func count_team_member():
 	var count_temp = 0
 	for pokemon in pokemon_team:
-		if pokemon_team != null:
+		if pokemon != null:
 			count_temp += 1
 	size_team = count_temp
 
@@ -112,6 +119,6 @@ func set_ennemy_team(new_pokemon_team):
 func count_ennemy_team_member():
 	var count_temp = 0
 	for pokemon in pokemon_ennemy_team:
-		if pokemon_team != null:
+		if pokemon != null:
 			count_temp += 1
-	size_team = count_temp
+	size_ennemy_team = count_temp

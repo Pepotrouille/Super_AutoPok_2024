@@ -2,6 +2,11 @@ extends Area2D
 
 class_name Pokemon
 
+###--------------------------------------------------------------------
+###-                   DEFINITIONS AND CREATION                       -
+###--------------------------------------------------------------------
+
+
 enum PokemonType {FIRE, WATER, GRASS, ELECTRIC, POISON, ROCK, FLYING, FIGHTING, NORMAL}
 
 static var type_vs = [
@@ -39,6 +44,11 @@ static func create_pokemon(new_pokemon_id : String, csv_pokemon_database : CSVPo
 static func coef_from_types(offensive_type: PokemonType, defensive_type: PokemonType) -> float:
 	return type_vs[offensive_type][defensive_type]
 
+###--------------------------------------------------------------------
+###-                            ATTRIBUTS                             -
+###--------------------------------------------------------------------
+
+##========================Pokemon kind Dependent====================
 var pok_type : PokemonType;
 var pok_name : String = "Salamèche";
 var pokemon_id : String;
@@ -47,13 +57,18 @@ var attack : int = 20;
 var freq_attack : int = 1;
 var price : int = 20;
 
-var alive : bool = true;
+##========================Current====================
 var life : int;
 
+##========================Display objects====================
 @export var pokemon_info : PokemonInfo 
 @export var pokemon_top_info : PokemonInfo 
 
+###--------------------------------------------------------------------
+###-                              METHODS                             -
+###--------------------------------------------------------------------
 
+##========================Ititialization====================
 func set_stats(new_type : PokemonType, new_pokemon_name : String, new_pokemon_id : String, new_max_life : int, new_atk : int, new_freq_atk : int, new_price : int):
 	#Set attributes
 	pok_type = new_type
@@ -77,11 +92,18 @@ func set_stats(new_type : PokemonType, new_pokemon_name : String, new_pokemon_id
 		
 	#Fix the position
 	$Sprite2D.scale = Vector2.ONE*3
-		
 
+
+##========================Set infos====================
 func set_current_life(current_life:int):
 	life = current_life
 	pokemon_info.set_current_life(current_life)
+
+func change_current_life(delta_life:int):
+	life += delta_life
+	pokemon_info.change_current_life(delta_life)
+
+##========================Set display info====================
 
 func show_life(is_now_visible:bool):
 	pokemon_info.show_life(is_now_visible)
@@ -90,11 +112,7 @@ func show_info(is_now_visible:bool):
 	pokemon_info.show_info(is_now_visible)
 
 func show_top_info(is_now_visible:bool):
-	pokemon_top_info.show_info_only(is_now_visible)
-
-func change_current_life(delta_life:int):
-	life += delta_life
-	pokemon_info.change_current_life(delta_life)
+	pokemon_top_info.show_info(is_now_visible)
 
 func face_right(will_face_right : bool):
 	$Sprite2D.flip_h = !will_face_right

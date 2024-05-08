@@ -4,6 +4,11 @@ class_name PossessedPokemon
 
 @export var index: int = 1;
 
+###--------------------------------------------------------------------
+###-                              METHODS                             -
+###--------------------------------------------------------------------
+
+##========================Ititialization====================
 #Pour initialiser un PossessedPokemon avec un Pokemon existant
 func set_possessed_pokemon(pokemon : Pokemon):
 	if pokemon != null:
@@ -22,6 +27,7 @@ func set_possessed_pokemon(pokemon : Pokemon):
 		local_pokemon.mouse_exited.connect(_on_pokemon_mouse_exited)
 		local_pokemon.show_info(false)
 
+##========================Actions====================
 #Permet de changer de place au sein de la team avec un autre pokemon. Met à jour les deux
 func change_position_in_team_with(other_possessed_pokemon: PossessedPokemon):
 	var temp_pos = base_position

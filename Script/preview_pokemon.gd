@@ -6,6 +6,11 @@ var local_pokemon : Pokemon;
 
 @export var view_size : float;
 
+###--------------------------------------------------------------------
+###-                              METHODS                             -
+###--------------------------------------------------------------------
+
+##========================Ititialization====================
 #Pour initialiser un PossessedPokemon avec un Pokemon existant
 func set_preview_pokemon(pokemon : Pokemon):
 	if pokemon != null:
@@ -22,6 +27,7 @@ func set_preview_pokemon(pokemon : Pokemon):
 		local_pokemon.show_info(false)
 		local_pokemon.face_right(false)
 
+##========================Signals====================
 func _on_pokemon_mouse_entered():
 	if local_pokemon:
 		local_pokemon.show_top_info(true)

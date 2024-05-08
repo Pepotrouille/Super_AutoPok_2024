@@ -23,16 +23,12 @@ keycode = 4194309
 [sub_resource type="Shortcut" id="Shortcut_mwphd"]
 events = [SubResource("InputEventKey_h2gkb")]
 
-[node name="Pokeshop" type="Node2D" node_paths=PackedStringArray("team_place_1", "team_place_2", "team_place_3", "team_place_4", "team_place_5", "team_place_6", "ennemy_team", "buyable_pokemons")]
+[node name="Pokeshop" type="Node2D" node_paths=PackedStringArray("player_team", "ennemy_team", "buyable_pokemons")]
 script = ExtResource("1_gnwpx")
-team_place_1 = NodePath("team_empty_place1")
-team_place_2 = NodePath("team_empty_place2")
-team_place_3 = NodePath("team_empty_place3")
-team_place_4 = NodePath("team_empty_place4")
-team_place_5 = NodePath("team_empty_place5")
-team_place_6 = NodePath("team_empty_place6")
+player_team = [NodePath("team_empty_place1"), NodePath("team_empty_place2"), NodePath("team_empty_place3"), NodePath("team_empty_place4"), NodePath("team_empty_place5"), NodePath("team_empty_place6")]
 ennemy_team = [NodePath("PreviewPokemon1"), NodePath("PreviewPokemon2"), NodePath("PreviewPokemon3"), NodePath("PreviewPokemon4"), NodePath("PreviewPokemon5"), NodePath("PreviewPokemon6")]
 buyable_pokemons = [NodePath("BuyablePokemon1"), NodePath("BuyablePokemon2"), NodePath("BuyablePokemon3")]
+price_refill = 0
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -5
@@ -63,14 +59,17 @@ scale = Vector2(6, 6)
 texture = ExtResource("11_bdbpi")
 
 [node name="BuyablePokemon1" parent="." instance=ExtResource("2_dr0j3")]
+z_index = 1
 position = Vector2(800, 705)
 scale = Vector2(2.5, 2.5)
 
 [node name="BuyablePokemon2" parent="." instance=ExtResource("2_dr0j3")]
+z_index = 1
 position = Vector2(1050, 705)
 scale = Vector2(2.5, 2.5)
 
 [node name="BuyablePokemon3" parent="." instance=ExtResource("2_dr0j3")]
+z_index = 1
 position = Vector2(1300, 705)
 scale = Vector2(2.5, 2.5)
 
@@ -177,7 +176,7 @@ offset_left = 720.0
 offset_top = 287.0
 offset_right = 957.0
 offset_bottom = 356.0
-text = "Changer tirage (coûte 5 pokédollars)
+text = "Changer tirage (coûte 2 pokédollars)
 "
 
 [node name="PreviewPokemon1" parent="." instance=ExtResource("15_qis1f")]
@@ -204,8 +203,19 @@ view_size = 1.3
 position = Vector2(1350, 930)
 view_size = 1.3
 
-[connection signal="pressed" from="Fight_button" to="." method="_on_fight_button_pressed"]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 1
+offset_left = 463.0
+offset_top = 923.0
+offset_right = 1457.0
+offset_bottom = 1021.0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Team adverse[/center]"
+
 [connection signal="pressed" from="Fight_button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Fight_button" to="." method="_on_fight_button_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Change_Buyable" to="." method="_on_change_buyable_pressed"]

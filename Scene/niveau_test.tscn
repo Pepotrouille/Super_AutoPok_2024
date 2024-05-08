@@ -30,32 +30,33 @@ scale = Vector2(6, 6)
 texture = ExtResource("4_fcwyw")
 
 [node name="player_pokemon_1" parent="." instance=ExtResource("6_bqec6")]
+z_index = 4
 position = Vector2(441, 456)
 scale = Vector2(2, 2)
 index_in_team = 1
 
 [node name="player_pokemon_2" parent="." instance=ExtResource("6_bqec6")]
-z_index = 1
+z_index = 6
 position = Vector2(297, 530)
 index_in_team = 2
 
 [node name="player_pokemon_3" parent="." instance=ExtResource("6_bqec6")]
-z_index = 2
+z_index = 8
 position = Vector2(236, 573)
 index_in_team = 3
 
 [node name="player_pokemon_4" parent="." instance=ExtResource("6_bqec6")]
-z_index = 1
+z_index = 6
 position = Vector2(179, 530)
 index_in_team = 4
 
 [node name="player_pokemon_5" parent="." instance=ExtResource("6_bqec6")]
-z_index = 2
+z_index = 8
 position = Vector2(118, 573)
 index_in_team = 5
 
 [node name="player_pokemon_6" parent="." instance=ExtResource("6_bqec6")]
-z_index = 1
+z_index = 6
 position = Vector2(66, 530)
 index_in_team = 6
 
@@ -76,12 +77,12 @@ adv_pokemon_5 = NodePath("../adv_pokemon_5")
 adv_pokemon_6 = NodePath("../adv_pokemon_6")
 
 [node name="adv_pokemon_1" parent="." instance=ExtResource("6_bqec6")]
+z_index = 2
 position = Vector2(690, 366)
 scale = Vector2(2, 2)
 index_in_team = 1
 
 [node name="adv_pokemon_2" parent="." instance=ExtResource("6_bqec6")]
-z_index = -1
 position = Vector2(829, 374)
 index_in_team = 2
 
@@ -91,7 +92,6 @@ position = Vector2(882, 330)
 index_in_team = 3
 
 [node name="adv_pokemon_4" parent="." instance=ExtResource("6_bqec6")]
-z_index = -1
 position = Vector2(957, 374)
 index_in_team = 4
 
@@ -101,7 +101,6 @@ position = Vector2(1010, 330)
 index_in_team = 5
 
 [node name="adv_pokemon_6" parent="." instance=ExtResource("6_bqec6")]
-z_index = -1
 position = Vector2(1070, 374)
 index_in_team = 6
 
