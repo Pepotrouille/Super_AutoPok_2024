@@ -8,7 +8,7 @@ static var type_vs = [
 	[0.5, 0.5, 2, 1, 1, 0.5, 1, 1, 1], 
 	[2, 0.5,0.5, 1, 1, 2, 1, 1, 1],
 	[0.5, 2, 0.5, 1, 0.5,2, 0.5, 1, 1],
-	[1, 0, 0.5, 0.5, 1, 1, 2, 1, 1],
+	[1, 1, 0.5, 0.5, 1, 1, 2, 1, 1],
 	[1, 1, 2, 1, 1, 0.5, 1, 1, 1],
 	[2, 1, 1, 1, 1, 1, 2, 0.5, 1],
 	[1, 1, 2, 0.5, 1, 0.5, 1, 2, 1],
@@ -51,6 +51,7 @@ var alive : bool = true;
 var life : int;
 
 @export var pokemon_info : PokemonInfo 
+@export var pokemon_top_info : PokemonInfo 
 
 
 func set_stats(new_type : PokemonType, new_pokemon_name : String, new_pokemon_id : String, new_max_life : int, new_atk : int, new_freq_atk : int, new_price : int):
@@ -63,8 +64,10 @@ func set_stats(new_type : PokemonType, new_pokemon_name : String, new_pokemon_id
 	price = new_price
 	freq_attack = new_freq_atk
 	attack = new_atk
-	$PokemonInfo.set_info(pok_name, max_life, life, attack, price, pok_type, freq_attack)
-	
+	pokemon_info.set_info(pok_name, max_life, life, attack, price, pok_type, freq_attack)
+	pokemon_top_info.set_info(pok_name, max_life, life, attack, price, pok_type, freq_attack)
+	pokemon_info.show_info(false)
+	pokemon_top_info.show_info(false)
 	#Set the image
 	var new_path = pokemon_image_path + pokemon_id + ".png"
 	if FileAccess.file_exists(new_path):
@@ -81,10 +84,13 @@ func set_current_life(current_life:int):
 	pokemon_info.set_current_life(current_life)
 
 func show_life(is_now_visible:bool):
-	$PokemonInfo.show_life(is_now_visible)
+	pokemon_info.show_life(is_now_visible)
 
 func show_info(is_now_visible:bool):
 	pokemon_info.show_info(is_now_visible)
+
+func show_top_info(is_now_visible:bool):
+	pokemon_top_info.show_info_only(is_now_visible)
 
 func change_current_life(delta_life:int):
 	life += delta_life

@@ -24,7 +24,15 @@ func show_info(is_now_visible:bool):
 	$FreqAtkDisplayValue.visible = is_now_visible
 	$Type.visible = is_now_visible
 	$BG.visible = is_now_visible
-	
+
+func show_info_only(is_now_visible:bool):
+	$LifeBar.visible = false
+	$NameDisplay.visible = is_now_visible
+	$AttackDisplayValue.visible = is_now_visible
+	$PriceDisplayValue.visible = is_now_visible
+	$FreqAtkDisplayValue.visible = is_now_visible
+	$Type.visible = is_now_visible
+	$BG.visible = is_now_visible
 
 func set_pokemon_name(pokemon_name : String):
 	$NameDisplay.text = "[center]" + pokemon_name + "[/center]"
@@ -47,7 +55,7 @@ func set_freq_atk(freq:int):
 	$FreqAtkDisplayValue.text = str(freq)
 
 func set_type(type: Pokemon.PokemonType):
-	$Type.texture = load("res://Assets/Images/UI/Type/Type_" + Pokemon.PokemonType.keys()[type] +".png")
+	$Type.texture = load("res://Assets/Images/UI/Type/Type_" + (Pokemon.PokemonType.keys()[type]).to_camel_case() +".png")
 
 func change_current_life(delta_life:int):
 	$LifeBar.value += delta_life

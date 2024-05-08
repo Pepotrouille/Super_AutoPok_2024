@@ -29,14 +29,17 @@ func _process(_delta):
 		if is_moving: #Déplacemenyt avec la souris si sélectionné
 			position = get_global_mouse_position()
 		elif is_hovered and current_selected == null: #Sélectionne pokémon si aucun sélectionné
+			#print("second: " + str(self))
+			#print("local_parent : " + str(local_pokemon.get_parent()))
+			#print("Will move pokemon " + str(get_child_count()))
+			#print("Will move pokemon " + get_children()[0].pok_name)
 			if local_pokemon != null:
 				_pokemon_is_moving.emit()
 				current_selected = local_pokemon;
 				current_selected.z_index=5;
 				is_moving = true;
 				is_dropped = false;
-			else:
-				queue_free()
+				print(is_moving)
 	elif is_moving: #Click souris laché, mais pas immobile (position initiale non-atteinte)
 		if position.distance_squared_to(base_position)<50:
 			_pokemon_is_not_moving.emit()
@@ -51,8 +54,7 @@ func _process(_delta):
 			else:
 				_dropped_on_areas()
 				is_dropped = true;
-			
-			
+
 func _on_pokemon_mouse_entered():
 	if local_pokemon:
 		if current_selected == null:

@@ -1,12 +1,25 @@
 extends Node2D
 
+@export_category("Pokeshop's elements")
+@export_group("Player Team")
 @export var team_place_1 : TeamEmptyPlace; 
 @export var team_place_2 : TeamEmptyPlace; 
 @export var team_place_3 : TeamEmptyPlace; 
 @export var team_place_4 : TeamEmptyPlace; 
 @export var team_place_5 : TeamEmptyPlace; 
 @export var team_place_6 : TeamEmptyPlace; 
+
+@export_group("Ennemy Team")
+@export var ennemy_team : Array[PreviewPokemon];
 # Called when the node enters the scene tree for the first time.
+
+@export_group("Pokemon To Buy")
+@export var buyable_pokemons : Array[BuyablePokemon];
+# Called when the node enters the scene tree for the first time.
+
+
+##========================Set up====================
+
 func _ready():
 	var game_stats = GameStats.get_instance()
 	game_stats._money_has_changed.connect(update_amount_money)
@@ -16,40 +29,35 @@ func _ready():
 	#Met les pokémons présents dans game stats à l'initialisation
 	randomize_pok_to_buy()
 	print(GameStats.get_instance().pokemon_team[0])
+	preview_ennemies()
 	for i in range(0,6): 
 		evaluate("team_place_" + str(i+1) + ".fill_place(game_stats.pokemon_team[" + str(i) +"])", ["game_stats"], [GameStats.get_instance()])
-	
-
 
 func update_amount_money(total_amount:int):#Will be changed to hud scene after
 	$Amount.text = (str(total_amount))
 
-func _on_fight_button_pressed():
-	if GameStats.get_instance().size_team >0:
-		#for i in range(1,7):
-			#evaluate("team_place_" + str(i) + "")
-		get_tree().change_scene_to_file("res://Scene/niveau_test.tscn")
-	else:
-		print("Veuillez prendre au moins un pokémon dans votre équipe")
-
-
-func _on_quit_pressed():
-	GameStats.get_instance().end_game()
-
-
-func _on_change_buyable_pressed():
-	var game_stats = GameStats.get_instance()
-	game_stats.change_money(-5)
-	update_amount_money(game_stats.money)
-	randomize_pok_to_buy()
+##========================Buyables====================
 
 func randomize_pok_to_buy():
 	var game_stats = GameStats.get_instance()
-	$BuyablePokemon1.set_pokemon_to_buy(game_stats.csv_pokemon_database.get_random_pokemon())
-	$BuyablePokemon2.set_pokemon_to_buy(game_stats.csv_pokemon_database.get_random_pokemon())
-	$BuyablePokemon3.set_pokemon_to_buy(game_stats.csv_pokemon_database.get_random_pokemon())
-	
-	
+	buyable_pokemons[0].set_pokemon_to_buy(game_stats.csv_pokemon_database.get_random_pokemon())
+	buyable_pokemons[0].position = buyable_pokemons[0].base_position
+	buyable_pokemons[1].set_pokemon_to_buy(game_stats.csv_pokemon_database.get_random_pokemon())
+	buyable_pokemons[1].position = buyable_pokemons[1].base_position
+	buyable_pokemons[2].set_pokemon_to_buy(game_stats.csv_pokemon_database.get_random_pokemon())
+	buyable_pokemons[2].position = buyable_pokemons[2].base_position
+
+
+##========================Ennemy Preview====================
+
+func preview_ennemies() -> void:
+	var game_stats = GameStats.get_instance()
+	var new_ennemy_team = game_stats.csv_pokemon_database.get_random_pokemon_team_depending_difficulty()
+	game_stats.set_ennemy_team(new_ennemy_team)
+	var i : int = 0
+	for pok in new_ennemy_team: 
+		ennemy_team[i].set_preview_pokemon(pok)
+		i += 1
 
 #Tiré de la doc Godot :
 #https://docs.godotengine.org/fr/4.x/tutorials/scripting/evaluating_expressions.html
@@ -69,5 +77,32 @@ func evaluate(command, variable_names = [], variable_values = []) -> void:
 	if not expression.has_execute_failed():
 		pass#print(str(result))
 
+
+##========================Scene Buttons====================
+
+func _on_fight_button_pressed():
+	var game_stats = GameStats.get_instance()
+	if game_stats.size_team >0:
+		for preview in ennemy_team:
+			if preview.local_pokemon:
+				preview.local_pokemon.reparent(game_stats)
+			
+			#evaluate("team_place_" + str(i) + "")
+		get_tree().change_scene_to_file("res://Scene/niveau_test.tscn")
+	else:
+		print("Veuillez prendre au moins un pokémon dans votre équipe")
+
+func _on_quit_pressed():
+	GameStats.get_instance().end_game()
+
+func _on_change_buyable_pressed():
+	var game_stats = GameStats.get_instance()
+	if game_stats.money >=5:
+		game_stats.change_money(-5)
+		update_amount_money(game_stats.money)
+		randomize_pok_to_buy()
+	else:
+		#Mettre message
+		print("Not enough money")
 
 

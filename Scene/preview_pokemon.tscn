@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3pho74ofrodq"]
+
+[ext_resource type="Script" path="res://Script/preview_pokemon.gd" id="1_f14v0"]
+
+[node name="PreviewPokemon" type="Node2D"]
+script = ExtResource("1_f14v0")
+view_size = 1.0

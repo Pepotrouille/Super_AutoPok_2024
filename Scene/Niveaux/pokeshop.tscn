@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dg01n774834xx"]
+[gd_scene load_steps=18 format=3 uid="uid://dg01n774834xx"]
 
 [ext_resource type="Script" path="res://Script/pokeshop.gd" id="1_gnwpx"]
 [ext_resource type="PackedScene" uid="uid://d2b4lu0ht1ue6" path="res://Scene/buyable_pokemon.tscn" id="2_dr0j3"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://q187kks8aa62" path="res://Assets/Images/Levels/Pokeshop/Pokeshop_ui.png" id="11_bdbpi"]
 [ext_resource type="Texture2D" uid="uid://behl201heax7m" path="res://Assets/Images/UI/buttons/Button_yellow_pressed.png" id="12_63n4e"]
 [ext_resource type="Texture2D" uid="uid://dr76xk0t856jj" path="res://Assets/Images/UI/buttons/Button_yellow_hovered.png" id="13_6ygkl"]
+[ext_resource type="PackedScene" uid="uid://b3pho74ofrodq" path="res://Scene/preview_pokemon.tscn" id="15_qis1f"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_h2gkb"]
 device = -1
@@ -22,7 +23,7 @@ keycode = 4194309
 [sub_resource type="Shortcut" id="Shortcut_mwphd"]
 events = [SubResource("InputEventKey_h2gkb")]
 
-[node name="Pokeshop" type="Node2D" node_paths=PackedStringArray("team_place_1", "team_place_2", "team_place_3", "team_place_4", "team_place_5", "team_place_6")]
+[node name="Pokeshop" type="Node2D" node_paths=PackedStringArray("team_place_1", "team_place_2", "team_place_3", "team_place_4", "team_place_5", "team_place_6", "ennemy_team", "buyable_pokemons")]
 script = ExtResource("1_gnwpx")
 team_place_1 = NodePath("team_empty_place1")
 team_place_2 = NodePath("team_empty_place2")
@@ -30,6 +31,8 @@ team_place_3 = NodePath("team_empty_place3")
 team_place_4 = NodePath("team_empty_place4")
 team_place_5 = NodePath("team_empty_place5")
 team_place_6 = NodePath("team_empty_place6")
+ennemy_team = [NodePath("PreviewPokemon1"), NodePath("PreviewPokemon2"), NodePath("PreviewPokemon3"), NodePath("PreviewPokemon4"), NodePath("PreviewPokemon5"), NodePath("PreviewPokemon6")]
+buyable_pokemons = [NodePath("BuyablePokemon1"), NodePath("BuyablePokemon2"), NodePath("BuyablePokemon3")]
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -5
@@ -171,14 +174,38 @@ position = Vector2(1143, 319)
 
 [node name="Change_Buyable" type="Button" parent="."]
 offset_left = 720.0
-offset_top = 353.0
+offset_top = 287.0
 offset_right = 957.0
-offset_bottom = 422.0
+offset_bottom = 356.0
 text = "Changer tirage (coûte 5 pokédollars)
 "
 
-[connection signal="pressed" from="Fight_button" to="." method="_on_button_pressed"]
+[node name="PreviewPokemon1" parent="." instance=ExtResource("15_qis1f")]
+position = Vector2(550, 930)
+view_size = 1.3
+
+[node name="PreviewPokemon2" parent="." instance=ExtResource("15_qis1f")]
+position = Vector2(710, 930)
+view_size = 1.3
+
+[node name="PreviewPokemon3" parent="." instance=ExtResource("15_qis1f")]
+position = Vector2(870, 930)
+view_size = 1.3
+
+[node name="PreviewPokemon4" parent="." instance=ExtResource("15_qis1f")]
+position = Vector2(1030, 930)
+view_size = 1.3
+
+[node name="PreviewPokemon5" parent="." instance=ExtResource("15_qis1f")]
+position = Vector2(1190, 930)
+view_size = 1.3
+
+[node name="PreviewPokemon6" parent="." instance=ExtResource("15_qis1f")]
+position = Vector2(1350, 930)
+view_size = 1.3
+
 [connection signal="pressed" from="Fight_button" to="." method="_on_fight_button_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Fight_button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Change_Buyable" to="." method="_on_change_buyable_pressed"]

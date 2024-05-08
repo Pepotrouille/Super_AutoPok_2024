@@ -6,13 +6,14 @@ var local_pokemon : Pokemon;
 
 static var combat_script : CombatScript;
 
-@export var index_in_team : int;
 
 var next_place : CombatPokemon = null;
 
 var is_from_player : bool;
 
 signal has_died;
+
+@export var index_in_team : int;
 
 func _ready():
 	for node in get_parent().get_children():

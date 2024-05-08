@@ -59,13 +59,15 @@ z_index = 1
 position = Vector2(66, 530)
 index_in_team = 6
 
-[node name="CombatScript" parent="." node_paths=PackedStringArray("player_pokemon_1", "player_pokemon_2", "player_pokemon_3", "player_pokemon_4", "player_pokemon_5", "player_pokemon_6", "adv_pokemon_1", "adv_pokemon_2", "adv_pokemon_3", "adv_pokemon_4", "adv_pokemon_5", "adv_pokemon_6") instance=ExtResource("5_vmwhc")]
+[node name="CombatScript" parent="." node_paths=PackedStringArray("player_pokemon_team", "player_pokemon_1", "player_pokemon_2", "player_pokemon_3", "player_pokemon_4", "player_pokemon_5", "player_pokemon_6", "adversary_pokemon_team", "adv_pokemon_1", "adv_pokemon_2", "adv_pokemon_3", "adv_pokemon_4", "adv_pokemon_5", "adv_pokemon_6") instance=ExtResource("5_vmwhc")]
+player_pokemon_team = [NodePath("../player_pokemon_1"), NodePath("../player_pokemon_2"), NodePath("../player_pokemon_3"), NodePath("../player_pokemon_4"), NodePath("../player_pokemon_5"), NodePath("../player_pokemon_6")]
 player_pokemon_1 = NodePath("../player_pokemon_1")
 player_pokemon_2 = NodePath("../player_pokemon_2")
 player_pokemon_3 = NodePath("../player_pokemon_3")
 player_pokemon_4 = NodePath("../player_pokemon_4")
 player_pokemon_5 = NodePath("../player_pokemon_5")
 player_pokemon_6 = NodePath("../player_pokemon_6")
+adversary_pokemon_team = [NodePath("../adv_pokemon_1"), NodePath("../adv_pokemon_2"), NodePath("../adv_pokemon_3"), NodePath("../adv_pokemon_4"), NodePath("../adv_pokemon_5"), NodePath("../adv_pokemon_6")]
 adv_pokemon_1 = NodePath("../adv_pokemon_1")
 adv_pokemon_2 = NodePath("../adv_pokemon_2")
 adv_pokemon_3 = NodePath("../adv_pokemon_3")

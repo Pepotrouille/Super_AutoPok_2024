@@ -1,15 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://emsawk61edsn"]
 
-[ext_resource type="Texture2D" uid="uid://emj0xfbanb07" path="res://Assets/Images/Placeholder/bulbi.png" id="1_dfiri"]
 [ext_resource type="Script" path="res://Script/pokemon.gd" id="1_piusb"]
+[ext_resource type="Texture2D" uid="uid://74x06ivk8xbx" path="res://Assets/Images/Pokemons/SubstituteDoll.png" id="2_ic4qs"]
 [ext_resource type="PackedScene" uid="uid://cipa87sutptcv" path="res://Scene/pokemon_info.tscn" id="3_x85v2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3wb7"]
 size = Vector2(122, 118)
 
-[node name="Pokemon" type="Area2D" node_paths=PackedStringArray("pokemon_info")]
+[node name="Pokemon" type="Area2D" node_paths=PackedStringArray("pokemon_info", "pokemon_top_info")]
 script = ExtResource("1_piusb")
 pokemon_info = NodePath("PokemonInfo")
+pokemon_top_info = NodePath("PokemonTopInfo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -59)
@@ -19,11 +20,17 @@ shape = SubResource("RectangleShape2D_l3wb7")
 texture_filter = 1
 position = Vector2(0, -59)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_dfiri")
+texture = ExtResource("2_ic4qs")
 offset = Vector2(0, 10)
 
 [node name="PokemonInfo" parent="." instance=ExtResource("3_x85v2")]
+z_index = 1
 position = Vector2(0, 10)
+scale = Vector2(0.4, 0.4)
+
+[node name="PokemonTopInfo" parent="." instance=ExtResource("3_x85v2")]
+z_index = 1
+position = Vector2(0, -196)
 scale = Vector2(0.4, 0.4)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

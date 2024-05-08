@@ -12,6 +12,8 @@ func set_possessed_pokemon(pokemon : Pokemon):
 			local_pokemon.reparent(self)
 		else:
 			add_child(local_pokemon)
+		print("first: " + str(self))
+		print("Ste possessed pokemons: " + get_children()[0].pok_name)
 		position=Vector2.ZERO
 		local_pokemon.position=Vector2.ZERO
 		local_pokemon.position.y = position.y

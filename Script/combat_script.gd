@@ -3,6 +3,9 @@ extends Node
 class_name CombatScript
 
 var base_player_team : Array;
+
+@export_group("Player Team")
+@export var player_pokemon_team : Array[CombatPokemon]
 @export var player_pokemon_1 : CombatPokemon; 
 @export var player_pokemon_2 : CombatPokemon; 
 @export var player_pokemon_3 : CombatPokemon; 
@@ -11,6 +14,8 @@ var base_player_team : Array;
 @export var player_pokemon_6 : CombatPokemon; 
 
 var base_adv_team : Array;
+@export_group("Adversary Team")
+@export var adversary_pokemon_team : Array[CombatPokemon]
 @export var adv_pokemon_1 : CombatPokemon; 
 @export var adv_pokemon_2 : CombatPokemon; 
 @export var adv_pokemon_3 : CombatPokemon; 
@@ -34,7 +39,7 @@ var money_to_win : int = 0;
 func _ready():
 	set_places()
 	set_player_pokemon(GameStats.get_instance().pokemon_team)
-	set_adv_pokemon_test()
+	set_adv_pokemon(GameStats.get_instance().get_ennemy_team())
 	set_money_to_win()
 
 func _process(delta):
@@ -56,30 +61,30 @@ func set_places():
 	
 	player_pokemon_1.next_place = null
 	adv_pokemon_1.next_place = null
-	for i in range(2,7):
-		evaluate("player_pokemon_"+ str(i) +".set_next_place(player_pokemon_"+str(i-1) +")")
-		evaluate("adv_pokemon_"+ str(i) +".set_next_place(adv_pokemon_"+str(i-1) +")")
-	adv_pokemon_2.next_place = adv_pokemon_1
-
-	for i in range(1,7):
-		evaluate("player_pokemon_"+ str(i) +".set_is_from_player(true)")
-		evaluate("adv_pokemon_"+ str(i) +".set_is_from_player(false)")
+	for i in range(1,6):
+		player_pokemon_team[i].set_next_place(player_pokemon_team[i-1])
+		adversary_pokemon_team[i].set_next_place(adversary_pokemon_team[i-1])
+	for i in range(0,6):
+		player_pokemon_team[i].set_is_from_player(true)
+		adversary_pokemon_team[i].set_is_from_player(false)
 
 func set_player_pokemon(team_pok : Array):
 	#base_adv_team = team_pok #Permet d'utiliser la team dans la fonction evaluate. Peut être remplacé par passage d'argument.
 	base_player_team = team_pok
-	for i in range(1,7):
-		evaluate("player_pokemon_"+ str(i) +".set_combat_pokemon(base_player_team["+str(i-1) +"])")
+	for i in range(0,6):
+		player_pokemon_team[i].set_combat_pokemon(base_player_team[i])
 
 func set_adv_pokemon(team_pok : Array):
-	base_adv_team = team_pok #Permet d'utiliser la team dans la fonction evaluate. Peut être remplacé par passage d'argument.
-	for i in range(1,7):
-		evaluate("adv_pokemon_"+ str(i) +".set_combat_pokemon(base_adv_team["+str(i-1) +"])")
+	#base_adv_team = team_pok #Permet d'utiliser la team dans la fonction evaluate. Peut être remplacé par passage d'argument.
+	var i : int = 0
+	for pok in team_pok:
+		adversary_pokemon_team[i].set_combat_pokemon(pok)
+		i += 1
 
 func new_combat_turn():
-	for i in range(1,7):
-		evaluate("adv_pokemon_"+ str(i) +".make_action()")
-		evaluate("player_pokemon_"+ str(i) +".make_action()")
+	for i in range(0,6):
+		player_pokemon_team[i].make_action()
+		adversary_pokemon_team[i].make_action()
 	player_pokemon_1.check_dying()
 	adv_pokemon_1.check_dying()
 
@@ -91,85 +96,59 @@ func new_moving_turn():
 	elif adv_lost:
 		ends_in_victory()
 	else:
-		for i in range(1,7):
-			evaluate("adv_pokemon_"+ str(i) +".move()")
-			evaluate("player_pokemon_"+ str(i) +".move()")
+		for i in range(0,6):
+			adversary_pokemon_team[i].move()
+			player_pokemon_team[i].move()
 
 func get_first_non_null_player():
-	if player_pokemon_1.local_pokemon != null:
-		return player_pokemon_1
-	if player_pokemon_2.local_pokemon != null:
-		return player_pokemon_2
-	if player_pokemon_3.local_pokemon != null:
-		return player_pokemon_3
-	if player_pokemon_4.local_pokemon != null:
-		return player_pokemon_4
-	if player_pokemon_5.local_pokemon != null:
-		return player_pokemon_5
-	if player_pokemon_6.local_pokemon != null:
-		return player_pokemon_6
+	for i in range(0,6):
+		if player_pokemon_team[i].local_pokemon:
+			return player_pokemon_team[i]
 
 func get_first_non_null_adversary():
-	if adv_pokemon_1.local_pokemon != null:
-		return adv_pokemon_1
-	if adv_pokemon_2.local_pokemon != null:
-		return adv_pokemon_2
-	if adv_pokemon_3.local_pokemon != null:
-		return adv_pokemon_3
-	if adv_pokemon_4.local_pokemon != null:
-		return adv_pokemon_4
-	if adv_pokemon_5.local_pokemon != null:
-		return adv_pokemon_5
-	if adv_pokemon_6.local_pokemon != null:
-		return adv_pokemon_6
+	for i in range(0,6):
+		if adversary_pokemon_team[i].local_pokemon != null:
+			return adversary_pokemon_team[i]
 
 func check_remaining_pokemon_player():
-	if (player_pokemon_1.local_pokemon == null and
-		player_pokemon_2.local_pokemon == null and
-		player_pokemon_3.local_pokemon == null and
-		player_pokemon_4.local_pokemon == null and
-		player_pokemon_5.local_pokemon == null and
-		player_pokemon_6.local_pokemon == null):
+	if (player_pokemon_team[0].local_pokemon == null and
+		player_pokemon_team[1].local_pokemon == null and
+		player_pokemon_team[2].local_pokemon == null and
+		player_pokemon_team[3].local_pokemon == null and
+		player_pokemon_team[4].local_pokemon == null and
+		player_pokemon_team[5].local_pokemon == null):
 			player_lost=true
 
 func check_remaining_pokemon_adv():
-	if (adv_pokemon_1.local_pokemon == null and
-		adv_pokemon_2.local_pokemon == null and
-		adv_pokemon_3.local_pokemon == null and
-		adv_pokemon_4.local_pokemon == null and
-		adv_pokemon_5.local_pokemon == null and
-		adv_pokemon_6.local_pokemon == null):
+	if (adversary_pokemon_team[0].local_pokemon == null and
+		adversary_pokemon_team[1].local_pokemon == null and
+		adversary_pokemon_team[2].local_pokemon == null and
+		adversary_pokemon_team[3].local_pokemon == null and
+		adversary_pokemon_team[4].local_pokemon == null and
+		adversary_pokemon_team[5].local_pokemon == null):
 			adv_lost=true
 
 func set_money_to_win():
-	if adv_pokemon_1.local_pokemon:
-		add_money_to_win(adv_pokemon_1.local_pokemon.price / 2)
-	if adv_pokemon_2.local_pokemon:
-		add_money_to_win(adv_pokemon_2.local_pokemon.price / 2)
-	if adv_pokemon_3.local_pokemon:
-		add_money_to_win(adv_pokemon_3.local_pokemon.price / 2)
-	if adv_pokemon_4.local_pokemon:
-		add_money_to_win(adv_pokemon_4.local_pokemon.price / 2)
-	if adv_pokemon_5.local_pokemon:
-		add_money_to_win(adv_pokemon_5.local_pokemon.price / 2)
-	if adv_pokemon_6.local_pokemon:
-		add_money_to_win(adv_pokemon_6.local_pokemon.price / 2)
+	for i in range(0,6):
+		if adversary_pokemon_team[i].local_pokemon:
+			add_money_to_win(adversary_pokemon_team[i].local_pokemon.price / 2)
 
 func add_money_to_win(money_amount : int):
 	money_to_win += money_amount
 
 func ends_in_victory():
 	game_ended = true
+	var game_stats = GameStats.get_instance()
 	var winning_screen = load("res://Scene/UI/winning_screen.tscn").instantiate()
 	
 	#Gère les crédits gagnés
 	winning_screen.set_winning_screen(money_to_win)
 	GameStats.get_instance().change_money(money_to_win)
 	
-	for i in range (1,7):
-		evaluate("game_stats.set_pokemon(" + str(i) + ", player_pokemon_" + str(i) + ".local_pokemon)", ["game_stats"], [GameStats.get_instance()])
-	for i in range (1,7):
-		evaluate("player_pokemon_" + str(i) + ".reparent(game_stats)", ["game_stats"], [GameStats.get_instance()])
+	for i in range (0,6):#GameStats.get_instance()
+		game_stats.set_pokemon(i+1, player_pokemon_team[i].local_pokemon)
+	for i in range (0,6):
+		player_pokemon_team[i].reparent(game_stats)
 	##Penser à mettre un Canvas nommé CanvasLayer dans la scène
 	get_parent().find_child("CanvasLayer").add_child(winning_screen)
 
@@ -184,25 +163,7 @@ func ends_in_defeat():
 func set_adv_pokemon_test():
 	var new_adv_team = GameStats.get_instance().csv_pokemon_database.get_random_pokemon_team_depending_difficulty()
 	for i in range(0, new_adv_team.size()):
-		#print(new_adv_team[i].pok_name)
-		evaluate("adv_pokemon_" + str(i+1) + ".set_combat_pokemon(new_adv_pok)", ["new_adv_pok"],[new_adv_team[i]])
+		adversary_pokemon_team[i].set_combat_pokemon(new_adv_team[i])
 ## ---------- ##
 
-#Tiré de la doc Godot :
-#https://docs.godotengine.org/fr/4.x/tutorials/scripting/evaluating_expressions.html
-#Permet de factoriser des fonctions en transformants des strings en fonctions
-#Permettant par exemple une itération dans des variables.
-#ATTENTION : ne marche que sur des fonctions, par sur des sets directs (machin = chose)
-func evaluate(command, variable_names = [], variable_values = []) -> void:
-	#print(command)
-	var expression = Expression.new()
-	var error = expression.parse(command, variable_names)
-	if error != OK:
-		push_error(expression.get_error_text())
-		return
-
-	var _result = expression.execute(variable_values, self)
-
-	if not expression.has_execute_failed():
-		pass#print(str(result))
 
