@@ -31,7 +31,6 @@ func set_preview_pokemon(pokemon : Pokemon):
 func _on_pokemon_mouse_entered():
 	if local_pokemon:
 		local_pokemon.show_top_info(true)
-		print("oui")
 
 func _on_pokemon_mouse_exited():
 	if local_pokemon:

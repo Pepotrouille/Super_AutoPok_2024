@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dte01v3cn1cql"]
 
 [ext_resource type="Script" path="res://Script/team_empty_place.gd" id="1_ay5pf"]
-[ext_resource type="Texture2D" uid="uid://5td0pm817bwt" path="res://Assets/Images/Placeholder/FreePlace.png" id="2_vr30h"]
+[ext_resource type="Texture2D" uid="uid://vo3mklvulo4v" path="res://Assets/Images/UI/FreePlace.png" id="2_1r4bw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mxmre"]
 radius = 60.0
@@ -16,4 +16,4 @@ shape = SubResource("CircleShape2D_mxmre")
 [node name="RoundLight" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(6, 6)
-texture = ExtResource("2_vr30h")
+texture = ExtResource("2_1r4bw")

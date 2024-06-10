@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://mtvdbr45jejx"]
 
-[ext_resource type="Texture2D" uid="uid://wbctovfel6w2" path="res://Assets/Images/Placeholder/images.png" id="1_vcauf"]
 [ext_resource type="Script" path="res://Script/sell_place.gd" id="1_y8pn6"]
+[ext_resource type="Texture2D" uid="uid://byxuhtcgqa5cx" path="res://Assets/Images/UI/Sell_Zone.png" id="2_81dmi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6qrte"]
 size = Vector2(224, 225)
@@ -10,8 +10,20 @@ size = Vector2(224, 225)
 script = ExtResource("1_y8pn6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_vcauf")
+texture_filter = 1
+scale = Vector2(6, 6)
+texture = ExtResource("2_81dmi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_6qrte")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -77.0
+offset_top = -42.0
+offset_right = 79.0
+offset_bottom = 35.0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 29
+bbcode_enabled = true
+text = "[center]Vendre  Pokémon"

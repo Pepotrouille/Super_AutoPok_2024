@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://duk7mnae8ynoh"]
+
+[ext_resource type="AudioStream" uid="uid://ts1f0d8v3ddb" path="res://Assets/Sounds/Music/Cornbeast - Long live Gameboy Krautrock.mp3" id="1_tgxpp"]
+
+[node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_tgxpp")
+volume_db = -26.0
+autoplay = true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ts1f0d8v3ddb"
+path="res://.godot/imported/Cornbeast - Long live Gameboy Krautrock.mp3-53bb27202206973ee65feff6dd647c24.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Music/Cornbeast - Long live Gameboy Krautrock.mp3"
+dest_files=["res://.godot/imported/Cornbeast - Long live Gameboy Krautrock.mp3-53bb27202206973ee65feff6dd647c24.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

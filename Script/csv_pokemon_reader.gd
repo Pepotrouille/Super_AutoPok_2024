@@ -17,6 +17,7 @@ func _ready():
 func instantiate_variables():
 	#Instantiate pok_bdd
 	pok_bdd = FileAccess.open(pokemon_database_path, FileAccess.READ)
+	#print(pokemon_database_path)
 	#Instantiate pok_index and pok_total_rarity
 	pok_total_rarity = 0
 	pok_ids = []
@@ -24,6 +25,7 @@ func instantiate_variables():
 	while !pok_bdd.eof_reached():
 		var pokemon_stat = pok_bdd.get_csv_line()
 		if pokemon_stat.size()>=7:
+			#print(pokemon_stat[2])
 			pok_ids.append(pokemon_stat[2])
 			pok_total_rarity += int(pokemon_stat[7])
 

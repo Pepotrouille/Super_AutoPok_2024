@@ -1,26 +1,191 @@
-[gd_scene load_steps=3 format=3 uid="uid://fbk3sjtu8j83"]
+[gd_scene load_steps=15 format=3 uid="uid://fbk3sjtu8j83"]
 
 [ext_resource type="Script" path="res://Script/UI/main_menu.gd" id="1_62am0"]
+[ext_resource type="Texture2D" uid="uid://mhi5iuy442yn" path="res://Assets/Images/UI/buttons/Button_yellow_up.png" id="2_7avhq"]
+[ext_resource type="Texture2D" uid="uid://dppx836rpbwos" path="res://Assets/Images/UI/buttons/Button_white_up.png" id="2_8vohm"]
+[ext_resource type="Texture2D" uid="uid://dinpaghofddbw" path="res://Assets/Images/UI/MainMenu_BG.png" id="2_b8ocm"]
 [ext_resource type="PackedScene" uid="uid://dqkevsq4wplr4" path="res://Scene/game_stats.tscn" id="2_ux4ar"]
+[ext_resource type="PackedScene" uid="uid://bkapjd14oh5mf" path="res://Scene/loading_game.tscn" id="3_4wyjm"]
+[ext_resource type="Texture2D" uid="uid://qpplpvloc6qu" path="res://Assets/Images/UI/buttons/Button_white_pressed.png" id="3_cjtlx"]
+[ext_resource type="Texture2D" uid="uid://behl201heax7m" path="res://Assets/Images/UI/buttons/Button_yellow_pressed.png" id="3_fd4tf"]
+[ext_resource type="Texture2D" uid="uid://b0vykr7xvjms7" path="res://Assets/Images/UI/buttons/Button_white_hovered.png" id="4_585ay"]
+[ext_resource type="Texture2D" uid="uid://dr76xk0t856jj" path="res://Assets/Images/UI/buttons/Button_yellow_hovered.png" id="4_ejrsd"]
+[ext_resource type="Texture2D" uid="uid://b63ijij3h8giy" path="res://Assets/Images/UI/SuperAutoPoksTitle.png" id="10_4kyoi"]
+[ext_resource type="Script" path="res://Script/UI/floating_object.gd" id="12_n670b"]
+[ext_resource type="Texture2D" uid="uid://caxtvwbn3m4cw" path="res://Assets/Images/Pokemons/Pikachu.png" id="13_s2owa"]
+[ext_resource type="Texture2D" uid="uid://c60cy7dh4brr0" path="res://Assets/Images/Pokemons/Pitrouille.png" id="14_3u2nq"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_62am0")
 
+[node name="MainMenuBg" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(757.5, 515.75)
+scale = Vector2(6.06, 6.03801)
+texture = ExtResource("2_b8ocm")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Start" type="Button" parent="CanvasLayer"]
+[node name="Options" type="TextureButton" parent="CanvasLayer"]
+visible = false
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 102.0
-offset_top = 109.0
-offset_right = -980.0
-offset_bottom = -737.0
+offset_left = 572.0
+offset_top = 819.0
+offset_right = -559.0
+offset_bottom = -106.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Commencer"
+texture_normal = ExtResource("2_8vohm")
+texture_pressed = ExtResource("3_cjtlx")
+texture_hover = ExtResource("4_585ay")
+stretch_mode = 4
+
+[node name="Options_Text" type="RichTextLabel" parent="CanvasLayer/Options"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 13.0
+offset_right = 364.0
+offset_bottom = 63.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.576471, 0.305882, 0.156863, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center] Options"
+
+[node name="Credits" type="TextureButton" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 572.0
+offset_top = 717.0
+offset_right = -559.0
+offset_bottom = -208.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_8vohm")
+texture_pressed = ExtResource("3_cjtlx")
+texture_hover = ExtResource("4_585ay")
+stretch_mode = 4
+
+[node name="Credits_Text" type="RichTextLabel" parent="CanvasLayer/Credits"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 13.0
+offset_right = 364.0
+offset_bottom = 63.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.576471, 0.305882, 0.156863, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center] Crédits"
+
+[node name="Start" type="TextureButton" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 435.0
+offset_top = 552.0
+offset_right = -440.0
+offset_bottom = -303.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_7avhq")
+texture_pressed = ExtResource("3_fd4tf")
+texture_hover = ExtResource("4_ejrsd")
+stretch_mode = 4
+
+[node name="Start_Text" type="RichTextLabel" parent="CanvasLayer/Start"]
+texture_filter = 1
+layout_mode = 0
+offset_top = 21.0
+offset_right = 627.0
+offset_bottom = 113.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.576471, 0.305882, 0.156863, 1)
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center] Jouer"
+
+[node name="Quit" type="TextureButton" parent="."]
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 572.0
+offset_top = 919.0
+offset_right = 941.0
+offset_bottom = 1020.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_8vohm")
+texture_pressed = ExtResource("3_cjtlx")
+texture_hover = ExtResource("4_585ay")
+stretch_mode = 4
+
+[node name="Quit_Text" type="RichTextLabel" parent="Quit"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 13.0
+offset_right = 364.0
+offset_bottom = 63.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.576471, 0.305882, 0.156863, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center] Quit"
 
 [node name="GameStats" parent="." instance=ExtResource("2_ux4ar")]
 
-[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_button_pressed"]
+[node name="LoadingGame" parent="." instance=ExtResource("3_4wyjm")]
+
+[node name="SuperAutoPoksTitle" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(742, 299)
+scale = Vector2(6, 6)
+texture = ExtResource("10_4kyoi")
+script = ExtResource("12_n670b")
+max_offset = 10.0
+
+[node name="Pikachu" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(248, 520)
+scale = Vector2(7.14844, 7.14844)
+texture = ExtResource("13_s2owa")
+script = ExtResource("12_n670b")
+speed = 5.0
+max_offset = 3.0
+
+[node name="Pitrouille" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(1241, 520)
+scale = Vector2(7.14844, 7.14844)
+texture = ExtResource("14_3u2nq")
+flip_h = true
+script = ExtResource("12_n670b")
+speed = 5.0
+max_offset = 3.0
+
+[node name="CurrentBestScore" type="RichTextLabel" parent="."]
+offset_left = 79.0
+offset_top = 740.0
+offset_right = 413.0
+offset_bottom = 925.0
+theme_override_font_sizes/normal_font_size = 39
+bbcode_enabled = true
+text = "[center]Meilleur Score session actuelle :
+0"
+
+[connection signal="pressed" from="CanvasLayer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]

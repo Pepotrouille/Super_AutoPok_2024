@@ -13,7 +13,11 @@ config_version=5
 config/name="Super_Autopok_2024"
 run/main_scene="res://Scene/UI/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Icon.ico"
+
+[autoload]
+
+Music="*res://Scene/Music.tscn"
 
 [debug]
 
@@ -23,6 +27,7 @@ gdscript/warnings/integer_division=0
 
 window/size/viewport_width=1500
 window/size/viewport_height=1026
+window/stretch/mode="viewport"
 
 [gui]
 

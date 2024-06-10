@@ -51,6 +51,11 @@ func _ready():
 
 func end_game():
 	##Envoyer score à l'exterieur
+	if score > GlobalData.current_best_score:
+		GlobalData.current_best_score = score
+	for pokemon in pokemon_team:
+		if pokemon:
+			pokemon.queue_free()
 	get_tree().change_scene_to_file("res://Scene/UI/main_menu.tscn")
 	queue_free()
 

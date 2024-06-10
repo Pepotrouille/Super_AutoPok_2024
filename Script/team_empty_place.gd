@@ -60,7 +60,7 @@ func new_movable_in_scene(new_movable : MovablePokemon):
 
 func fill_place(pokemon : Pokemon):
 	if pokemon != null :
-		var filled_place = load("res://Scene/possessed_pokemon.tscn").instantiate();
+		var filled_place = load("res://Scene/Pokemon/possessed_pokemon.tscn").instantiate();
 		filled_place.index = index
 		filled_place.set_possessed_pokemon(pokemon);
 		GameStats.get_instance().set_pokemon(index, pokemon)
@@ -68,6 +68,7 @@ func fill_place(pokemon : Pokemon):
 		pokemon.z_index = 1
 		pokemon.face_right(false)
 		filled_place.position=position
+		filled_place.position.y += 25
 		get_tree().root.get_child(0).add_child(filled_place)
 		_new_movable.emit(filled_place)
 		empty_places_in_scene.remove_at(empty_places_in_scene.find(self))

@@ -131,7 +131,7 @@ func check_remaining_pokemon_adv():
 func set_money_to_win():
 	for i in range(0,6):
 		if adversary_pokemon_team[i].local_pokemon:
-			add_money_to_win(adversary_pokemon_team[i].local_pokemon.price / 2)
+			add_money_to_win(adversary_pokemon_team[i].local_pokemon.price * 0.75)
 
 func add_money_to_win(money_amount : int):
 	money_to_win += money_amount
@@ -142,7 +142,7 @@ func ends_in_victory():
 	var winning_screen = load("res://Scene/UI/winning_screen.tscn").instantiate()
 	
 	#Gère les crédits gagnés
-	winning_screen.set_winning_screen(money_to_win)
+	winning_screen.set_winning_screen(game_stats.score, money_to_win)
 	GameStats.get_instance().change_money(money_to_win)
 	
 	for i in range (0,6):#GameStats.get_instance()

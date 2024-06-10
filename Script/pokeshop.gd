@@ -16,7 +16,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 
 @export_group("Pokeshop parameters")
-@export var price_refill : int = 2;
+@export var price_refill : int = 3;
 
 ###--------------------------------------------------------------------
 ###-                              METHODS                             -
@@ -36,7 +36,9 @@ func _ready():
 	preview_ennemies()
 	for i in range(0,6): 
 		player_team[i].fill_place(game_stats.pokemon_team[i])
-	$Change_Buyable.text = "Changer tirage (coûte " + str(price_refill) + " pokédollars)"
+	$Change_Buyable/Change_Buyable_Text.text = "[center]Changer tirage"
+	$Change_Buyable/Change_Buyable_Text.newline()
+	$Change_Buyable/Change_Buyable_Text.append_text("(coûte " + str(price_refill) + " pokédollars)") 
 
 func update_amount_money(total_amount:int):#Will be changed to hud scene after
 	$Amount.text = (str(total_amount))

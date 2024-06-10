@@ -1,0 +1,241 @@
+[gd_scene load_steps=18 format=3 uid="uid://dg01n774834xx"]
+
+[ext_resource type="Script" path="res://Script/pokeshop.gd" id="1_g3wf3"]
+[ext_resource type="Texture2D" uid="uid://cw1m7toc3238c" path="res://Assets/Images/Levels/Pokeshop/Pokeshop_background.png" id="2_xsyds"]
+[ext_resource type="Texture2D" uid="uid://dow3k70sek382" path="res://Assets/Images/Levels/Pokeshop/Pokeshop_backdesk.png" id="3_gwil6"]
+[ext_resource type="Texture2D" uid="uid://dhpookcl7ws41" path="res://Assets/Images/Levels/Pokeshop/Pokeshop_frontdesk.png" id="4_ywwo2"]
+[ext_resource type="Texture2D" uid="uid://q187kks8aa62" path="res://Assets/Images/Levels/Pokeshop/Pokeshop_ui.png" id="5_nr4m5"]
+[ext_resource type="PackedScene" uid="uid://d2b4lu0ht1ue6" path="res://Scene/Pokemon/buyable_pokemon.tscn" id="6_jrnfj"]
+[ext_resource type="PackedScene" uid="uid://dte01v3cn1cql" path="res://Scene/team_empty_place.tscn" id="7_l08v4"]
+[ext_resource type="Texture2D" uid="uid://dppx836rpbwos" path="res://Assets/Images/UI/buttons/Button_white_up.png" id="8_p1p34"]
+[ext_resource type="Texture2D" uid="uid://qpplpvloc6qu" path="res://Assets/Images/UI/buttons/Button_white_pressed.png" id="9_6fuml"]
+[ext_resource type="Texture2D" uid="uid://b0vykr7xvjms7" path="res://Assets/Images/UI/buttons/Button_white_hovered.png" id="10_c65v8"]
+[ext_resource type="Texture2D" uid="uid://mhi5iuy442yn" path="res://Assets/Images/UI/buttons/Button_yellow_up.png" id="11_s0mxn"]
+[ext_resource type="Texture2D" uid="uid://behl201heax7m" path="res://Assets/Images/UI/buttons/Button_yellow_pressed.png" id="12_6omub"]
+[ext_resource type="Texture2D" uid="uid://dr76xk0t856jj" path="res://Assets/Images/UI/buttons/Button_yellow_hovered.png" id="13_03bwv"]
+[ext_resource type="PackedScene" uid="uid://mtvdbr45jejx" path="res://Scene/sell_place.tscn" id="14_g8mv3"]
+[ext_resource type="PackedScene" uid="uid://b3pho74ofrodq" path="res://Scene/Pokemon/preview_pokemon.tscn" id="15_qxph1"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_h2gkb"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_mwphd"]
+events = [SubResource("InputEventKey_h2gkb")]
+
+[node name="Pokeshop" type="Node2D" node_paths=PackedStringArray("player_team", "ennemy_team", "buyable_pokemons")]
+script = ExtResource("1_g3wf3")
+player_team = [NodePath("team_empty_place1"), NodePath("team_empty_place2"), NodePath("team_empty_place3"), NodePath("team_empty_place4"), NodePath("team_empty_place5"), NodePath("team_empty_place6")]
+ennemy_team = [NodePath("PreviewPokemon1"), NodePath("PreviewPokemon2"), NodePath("PreviewPokemon3"), NodePath("PreviewPokemon4"), NodePath("PreviewPokemon5"), NodePath("PreviewPokemon6")]
+buyable_pokemons = [NodePath("BuyablePokemon1"), NodePath("BuyablePokemon2"), NodePath("BuyablePokemon3")]
+price_refill = 1
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -5
+texture_filter = 1
+position = Vector2(750, 513)
+scale = Vector2(6, 6)
+texture = ExtResource("2_xsyds")
+
+[node name="BackDesk" type="Sprite2D" parent="."]
+z_index = -4
+texture_filter = 1
+position = Vector2(750, 513)
+scale = Vector2(6, 6)
+texture = ExtResource("3_gwil6")
+
+[node name="FrontDesk" type="Sprite2D" parent="."]
+z_index = -3
+texture_filter = 1
+position = Vector2(750, 513)
+scale = Vector2(6, 6)
+texture = ExtResource("4_ywwo2")
+
+[node name="HUD" type="Sprite2D" parent="."]
+z_index = -2
+texture_filter = 1
+position = Vector2(750, 513)
+scale = Vector2(6, 6)
+texture = ExtResource("5_nr4m5")
+
+[node name="BuyablePokemon1" parent="." instance=ExtResource("6_jrnfj")]
+z_index = 1
+position = Vector2(700, 705)
+scale = Vector2(2.5, 2.5)
+
+[node name="BuyablePokemon2" parent="." instance=ExtResource("6_jrnfj")]
+z_index = 1
+position = Vector2(1000, 705)
+scale = Vector2(2.5, 2.5)
+
+[node name="BuyablePokemon3" parent="." instance=ExtResource("6_jrnfj")]
+z_index = 1
+position = Vector2(1300, 705)
+scale = Vector2(2.5, 2.5)
+
+[node name="team_empty_place1" parent="." instance=ExtResource("7_l08v4")]
+position = Vector2(143, 141)
+
+[node name="team_empty_place2" parent="." instance=ExtResource("7_l08v4")]
+position = Vector2(376, 141)
+index = 2
+
+[node name="team_empty_place3" parent="." instance=ExtResource("7_l08v4")]
+position = Vector2(143, 391)
+index = 3
+
+[node name="team_empty_place4" parent="." instance=ExtResource("7_l08v4")]
+position = Vector2(376, 391)
+index = 4
+
+[node name="team_empty_place5" parent="." instance=ExtResource("7_l08v4")]
+position = Vector2(143, 644)
+index = 5
+
+[node name="team_empty_place6" parent="." instance=ExtResource("7_l08v4")]
+position = Vector2(376, 644)
+index = 6
+
+[node name="Fight_button" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 47.0
+offset_top = 840.0
+offset_right = 393.0
+offset_bottom = 918.0
+shortcut = SubResource("Shortcut_mwphd")
+texture_normal = ExtResource("8_p1p34")
+texture_pressed = ExtResource("9_6fuml")
+texture_hover = ExtResource("10_c65v8")
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Fight_button"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]Commencer le combat[/center]"
+
+[node name="Quit" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 47.0
+offset_top = 929.0
+offset_right = 393.0
+offset_bottom = 1007.0
+shortcut = SubResource("Shortcut_mwphd")
+texture_normal = ExtResource("11_s0mxn")
+texture_pressed = ExtResource("12_6omub")
+texture_hover = ExtResource("13_03bwv")
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Quit"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]Quitter[/center]"
+
+[node name="Amount" type="RichTextLabel" parent="."]
+texture_filter = 1
+offset_left = 907.0
+offset_top = 31.0
+offset_right = 1089.0
+offset_bottom = 123.0
+theme_override_font_sizes/normal_font_size = 65
+text = "1500"
+
+[node name="Score" type="RichTextLabel" parent="."]
+texture_filter = 1
+offset_left = 1142.0
+offset_top = 31.0
+offset_right = 1460.0
+offset_bottom = 123.0
+theme_override_font_sizes/normal_font_size = 65
+text = "Score : 5"
+
+[node name="SellPlace" parent="." instance=ExtResource("14_g8mv3")]
+position = Vector2(1143, 319)
+
+[node name="Change_Buyable" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 655.0
+offset_top = 206.0
+offset_right = 1027.0
+offset_bottom = 302.0
+texture_normal = ExtResource("11_s0mxn")
+texture_pressed = ExtResource("12_6omub")
+texture_hover = ExtResource("13_03bwv")
+stretch_mode = 4
+
+[node name="Change_Buyable_Text" type="RichTextLabel" parent="Change_Buyable"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 3.0
+offset_right = -19.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]Changer tirage 
+(coûte 5 pokédollars)[/center]"
+
+[node name="PreviewPokemon1" parent="." instance=ExtResource("15_qxph1")]
+position = Vector2(550, 930)
+view_size = 1.3
+
+[node name="PreviewPokemon2" parent="." instance=ExtResource("15_qxph1")]
+position = Vector2(710, 930)
+view_size = 1.3
+
+[node name="PreviewPokemon3" parent="." instance=ExtResource("15_qxph1")]
+position = Vector2(870, 930)
+view_size = 1.3
+
+[node name="PreviewPokemon4" parent="." instance=ExtResource("15_qxph1")]
+position = Vector2(1030, 930)
+view_size = 1.3
+
+[node name="PreviewPokemon5" parent="." instance=ExtResource("15_qxph1")]
+position = Vector2(1190, 930)
+view_size = 1.3
+
+[node name="PreviewPokemon6" parent="." instance=ExtResource("15_qxph1")]
+position = Vector2(1350, 930)
+view_size = 1.3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 1
+offset_left = 463.0
+offset_top = 923.0
+offset_right = 1457.0
+offset_bottom = 1021.0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Team adverse[/center]"
+
+[connection signal="pressed" from="Fight_button" to="." method="_on_fight_button_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Change_Buyable" to="." method="_on_change_buyable_pressed"]

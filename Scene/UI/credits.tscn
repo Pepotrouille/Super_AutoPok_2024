@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvfr3piecmms3"]
+
+[ext_resource type="Script" path="res://Script/UI/credits.gd" id="1_2671l"]
+[ext_resource type="Texture2D" uid="uid://dinpaghofddbw" path="res://Assets/Images/UI/MainMenu_BG.png" id="2_vk6py"]
+[ext_resource type="Texture2D" uid="uid://dppx836rpbwos" path="res://Assets/Images/UI/buttons/Button_white_up.png" id="3_yihc3"]
+[ext_resource type="Texture2D" uid="uid://qpplpvloc6qu" path="res://Assets/Images/UI/buttons/Button_white_pressed.png" id="4_b1o6t"]
+[ext_resource type="Texture2D" uid="uid://b0vykr7xvjms7" path="res://Assets/Images/UI/buttons/Button_white_hovered.png" id="5_fqpoy"]
+[ext_resource type="Texture2D" uid="uid://7amyj44uhu7d" path="res://Assets/Images/UI/Icone_ClubInfo.png" id="6_yankl"]
+
+[node name="Credits" type="Node2D"]
+script = ExtResource("1_2671l")
+
+[node name="MainMenuBg" type="Sprite2D" parent="."]
+position = Vector2(750, 513)
+scale = Vector2(6, 6)
+texture = ExtResource("2_vk6py")
+
+[node name="Back" type="TextureButton" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 553.0
+offset_top = 903.0
+offset_right = 930.0
+offset_bottom = 995.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_yihc3")
+texture_pressed = ExtResource("4_b1o6t")
+texture_hover = ExtResource("5_fqpoy")
+stretch_mode = 4
+
+[node name="Back_Text" type="RichTextLabel" parent="Back"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 17.0
+offset_right = 374.0
+offset_bottom = 67.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.576471, 0.305882, 0.156863, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center] Retour"
+
+[node name="IconeClubInfo" type="Sprite2D" parent="."]
+position = Vector2(743, 283)
+texture = ExtResource("6_yankl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 68.0
+offset_top = 496.0
+offset_right = 1444.0
+offset_bottom = 643.0
+theme_override_font_sizes/normal_font_size = 54
+bbcode_enabled = true
+text = "[center]Réalisé par le Club Info de l'INSA Toulouse pour la semaine d'intégration 2024"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 2.0
+offset_top = 642.0
+offset_right = 1497.0
+offset_bottom = 866.0
+theme_override_colors/default_color = Color(1, 0.831373, 0.654902, 1)
+theme_override_font_sizes/normal_font_size = 43
+bbcode_enabled = true
+text = "[center]Pepotrouille : Developement et graphismes
+HydreTitan : Developement
+Rizaii : Equilibrage
+Musique : Cornbeast - Long live Gameboy Krautrock"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

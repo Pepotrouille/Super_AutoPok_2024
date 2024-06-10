@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwufr8xkrlh8"]
+[gd_scene load_steps=9 format=3 uid="uid://bwufr8xkrlh8"]
 
 [ext_resource type="Script" path="res://Script/UI/winning_screen.gd" id="1_2fopl"]
+[ext_resource type="Texture2D" uid="uid://bf7iyavb5ulf" path="res://Assets/Images/UI/Popup.png" id="2_6vg0v"]
+[ext_resource type="Texture2D" uid="uid://cii31ngrf56ir" path="res://Assets/Images/UI/buttons/Button_Transparent_Shadow_yellow_up.png" id="3_dgw2n"]
+[ext_resource type="Texture2D" uid="uid://bkikw7ek48fd1" path="res://Assets/Images/UI/buttons/Button_Transparent_Shadow_yellow_pressed.png" id="4_vn7qv"]
+[ext_resource type="Texture2D" uid="uid://dcajk1nmcrvwg" path="res://Assets/Images/UI/buttons/Button_Transparent_Shadow_yellow_hovered.png" id="5_7up8l"]
+[ext_resource type="Texture2D" uid="uid://t248crjischl" path="res://Assets/Images/UI/buttons/Button_Transparent_Shadow_white_up.png" id="6_1fvdt"]
+[ext_resource type="Texture2D" uid="uid://dqp05fe20pbts" path="res://Assets/Images/UI/buttons/Button_Transparent_Shadow_white_pressed.png" id="7_ft28o"]
+[ext_resource type="Texture2D" uid="uid://cjwhjjpej3m2s" path="res://Assets/Images/UI/buttons/Button_Transparent_Shadow_white_hovered.png" id="8_6nlrr"]
 
 [node name="WinningScreen" type="Control"]
 layout_mode = 3
@@ -11,46 +18,26 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2fopl")
 
+[node name="Popup" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(749, 249)
+scale = Vector2(6, 6)
+texture = ExtResource("2_6vg0v")
+
 [node name="Congrats" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 371.0
-offset_top = 206.0
-offset_right = -369.0
-offset_bottom = -756.0
+offset_left = 365.0
+offset_top = 153.0
+offset_right = -375.0
+offset_bottom = -773.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 45
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center] Combat gagné ! [/center]"
-
-[node name="Continue" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 435.0
-offset_top = 341.0
-offset_right = -814.0
-offset_bottom = -596.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Continuer"
-
-[node name="Quit" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 785.0
-offset_top = 342.0
-offset_right = -393.0
-offset_bottom = -598.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Quitter"
 
 [node name="Credits" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -58,13 +45,91 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 433.0
-offset_top = 281.0
+offset_top = 256.0
 offset_right = -433.0
-offset_bottom = -703.0
+offset_bottom = -728.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0.831373, 0.654902, 1)
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center] Crédits gagnés : [/center] "
+
+[node name="Score" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 434.0
+offset_top = 297.0
+offset_right = -432.0
+offset_bottom = -687.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0.831373, 0.654902, 1)
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center] Score actuel : [/center] "
+
+[node name="Continue" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 222.0
+offset_top = 402.0
+offset_right = -861.0
+offset_bottom = -510.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_dgw2n")
+texture_pressed = ExtResource("4_vn7qv")
+texture_hover = ExtResource("5_7up8l")
+stretch_mode = 4
+
+[node name="Continue_Text" type="RichTextLabel" parent="Continue"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 410.0
+offset_bottom = 70.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.576471, 0.305882, 0.156863, 1)
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] Continuer"
+
+[node name="Quit" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 895.0
+offset_top = 402.0
+offset_right = -188.0
+offset_bottom = -510.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_1fvdt")
+texture_pressed = ExtResource("7_ft28o")
+texture_hover = ExtResource("8_6nlrr")
+stretch_mode = 4
+
+[node name="Quit_Text" type="RichTextLabel" parent="Quit"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 412.0
+offset_bottom = 70.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.576471, 0.305882, 0.156863, 1)
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] Quitter"
 
 [connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
